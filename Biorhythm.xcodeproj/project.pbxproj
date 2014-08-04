@@ -1,0 +1,465 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		69166877198916D2001FA58C /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69166875198916D2001FA58C /* InfoViewController.m */; };
+		69166878198916D2001FA58C /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69166876198916D2001FA58C /* InfoViewController.xib */; };
+		692DFB2E19838BA400F97AF5 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 692DFB2C19838BA400F97AF5 /* DetailViewController.m */; };
+		692DFB2F19838BA400F97AF5 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 692DFB2D19838BA400F97AF5 /* DetailViewController.xib */; };
+		694CA82C19872F330086189B /* FWA10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 694CA82B19872F330086189B /* FWA10.jpg */; };
+		696052BA1981C44B00793F70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 696052B91981C44B00793F70 /* main.m */; };
+		696052BD1981C44B00793F70 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 696052BC1981C44B00793F70 /* AppDelegate.m */; };
+		696052C01981C44B00793F70 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 696052BF1981C44B00793F70 /* ViewController.m */; };
+		696052C31981C44C00793F70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 696052C11981C44C00793F70 /* Main.storyboard */; };
+		696052C51981C44C00793F70 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 696052C41981C44C00793F70 /* Images.xcassets */; };
+		696052D11981C44C00793F70 /* BiorhtthmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 696052D01981C44C00793F70 /* BiorhtthmTests.m */; };
+		696052DB1981C76000793F70 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 696052DA1981C76000793F70 /* libsqlite3.dylib */; };
+		696052DF1981C88000793F70 /* AddUserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 696052DD1981C88000793F70 /* AddUserInfoViewController.xib */; };
+		696052E01981C88000793F70 /* AddUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 696052DE1981C88000793F70 /* AddUserInfoViewController.m */; };
+		696898A5198B04E800F28188 /* SinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 696898A4198B04E800F28188 /* SinView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		696052CB1981C44C00793F70 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 696052AC1981C44B00793F70 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 696052B31981C44B00793F70;
+			remoteInfo = Biorhtthm;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		69166874198916D2001FA58C /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		69166875198916D2001FA58C /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		69166876198916D2001FA58C /* InfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
+		692DFB2B19838BA400F97AF5 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		692DFB2C19838BA400F97AF5 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		692DFB2D19838BA400F97AF5 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		694CA82B19872F330086189B /* FWA10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = FWA10.jpg; sourceTree = "<group>"; };
+		696052B41981C44B00793F70 /* Biorhythm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Biorhythm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		696052B81981C44B00793F70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		696052B91981C44B00793F70 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		696052BB1981C44B00793F70 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		696052BC1981C44B00793F70 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		696052BE1981C44B00793F70 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		696052BF1981C44B00793F70 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		696052C21981C44C00793F70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		696052C41981C44C00793F70 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		696052CA1981C44C00793F70 /* BiorhythmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BiorhythmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		696052CF1981C44C00793F70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		696052D01981C44C00793F70 /* BiorhtthmTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BiorhtthmTests.m; sourceTree = "<group>"; };
+		696052DA1981C76000793F70 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		696052DC1981C88000793F70 /* AddUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddUserInfoViewController.h; sourceTree = "<group>"; };
+		696052DD1981C88000793F70 /* AddUserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddUserInfoViewController.xib; sourceTree = "<group>"; };
+		696052DE1981C88000793F70 /* AddUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddUserInfoViewController.m; sourceTree = "<group>"; };
+		696898A3198B04E800F28188 /* SinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinView.h; sourceTree = "<group>"; };
+		696898A4198B04E800F28188 /* SinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		696052B11981C44B00793F70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				696052DB1981C76000793F70 /* libsqlite3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		696052C71981C44C00793F70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		696052AB1981C44B00793F70 = {
+			isa = PBXGroup;
+			children = (
+				696052DA1981C76000793F70 /* libsqlite3.dylib */,
+				696052B61981C44B00793F70 /* Biorhtthm */,
+				696052CD1981C44C00793F70 /* BiorhtthmTests */,
+				696052B51981C44B00793F70 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		696052B51981C44B00793F70 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				696052B41981C44B00793F70 /* Biorhythm.app */,
+				696052CA1981C44C00793F70 /* BiorhythmTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		696052B61981C44B00793F70 /* Biorhtthm */ = {
+			isa = PBXGroup;
+			children = (
+				694CA82B19872F330086189B /* FWA10.jpg */,
+				696052BB1981C44B00793F70 /* AppDelegate.h */,
+				696052BC1981C44B00793F70 /* AppDelegate.m */,
+				696052BE1981C44B00793F70 /* ViewController.h */,
+				696052BF1981C44B00793F70 /* ViewController.m */,
+				692DFB2B19838BA400F97AF5 /* DetailViewController.h */,
+				692DFB2C19838BA400F97AF5 /* DetailViewController.m */,
+				696898A3198B04E800F28188 /* SinView.h */,
+				696898A4198B04E800F28188 /* SinView.m */,
+				692DFB2D19838BA400F97AF5 /* DetailViewController.xib */,
+				696052DC1981C88000793F70 /* AddUserInfoViewController.h */,
+				696052DE1981C88000793F70 /* AddUserInfoViewController.m */,
+				696052DD1981C88000793F70 /* AddUserInfoViewController.xib */,
+				69166874198916D2001FA58C /* InfoViewController.h */,
+				69166875198916D2001FA58C /* InfoViewController.m */,
+				69166876198916D2001FA58C /* InfoViewController.xib */,
+				696052C11981C44C00793F70 /* Main.storyboard */,
+				696052C41981C44C00793F70 /* Images.xcassets */,
+				696052B71981C44B00793F70 /* Supporting Files */,
+			);
+			path = Biorhtthm;
+			sourceTree = "<group>";
+		};
+		696052B71981C44B00793F70 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				696052B81981C44B00793F70 /* Info.plist */,
+				696052B91981C44B00793F70 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		696052CD1981C44C00793F70 /* BiorhtthmTests */ = {
+			isa = PBXGroup;
+			children = (
+				696052D01981C44C00793F70 /* BiorhtthmTests.m */,
+				696052CE1981C44C00793F70 /* Supporting Files */,
+			);
+			path = BiorhtthmTests;
+			sourceTree = "<group>";
+		};
+		696052CE1981C44C00793F70 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				696052CF1981C44C00793F70 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		696052B31981C44B00793F70 /* Biorhythm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 696052D41981C44C00793F70 /* Build configuration list for PBXNativeTarget "Biorhythm" */;
+			buildPhases = (
+				696052B01981C44B00793F70 /* Sources */,
+				696052B11981C44B00793F70 /* Frameworks */,
+				696052B21981C44B00793F70 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Biorhythm;
+			productName = Biorhtthm;
+			productReference = 696052B41981C44B00793F70 /* Biorhythm.app */;
+			productType = "com.apple.product-type.application";
+		};
+		696052C91981C44C00793F70 /* BiorhythmTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 696052D71981C44C00793F70 /* Build configuration list for PBXNativeTarget "BiorhythmTests" */;
+			buildPhases = (
+				696052C61981C44C00793F70 /* Sources */,
+				696052C71981C44C00793F70 /* Frameworks */,
+				696052C81981C44C00793F70 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				696052CC1981C44C00793F70 /* PBXTargetDependency */,
+			);
+			name = BiorhythmTests;
+			productName = BiorhtthmTests;
+			productReference = 696052CA1981C44C00793F70 /* BiorhythmTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		696052AC1981C44B00793F70 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = JianhaiYu;
+				TargetAttributes = {
+					696052B31981C44B00793F70 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					696052C91981C44C00793F70 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = 696052B31981C44B00793F70;
+					};
+				};
+			};
+			buildConfigurationList = 696052AF1981C44B00793F70 /* Build configuration list for PBXProject "Biorhythm" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 696052AB1981C44B00793F70;
+			productRefGroup = 696052B51981C44B00793F70 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				696052B31981C44B00793F70 /* Biorhythm */,
+				696052C91981C44C00793F70 /* BiorhythmTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		696052B21981C44B00793F70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				696052C31981C44C00793F70 /* Main.storyboard in Resources */,
+				694CA82C19872F330086189B /* FWA10.jpg in Resources */,
+				696052C51981C44C00793F70 /* Images.xcassets in Resources */,
+				696052DF1981C88000793F70 /* AddUserInfoViewController.xib in Resources */,
+				69166878198916D2001FA58C /* InfoViewController.xib in Resources */,
+				692DFB2F19838BA400F97AF5 /* DetailViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		696052C81981C44C00793F70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		696052B01981C44B00793F70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				692DFB2E19838BA400F97AF5 /* DetailViewController.m in Sources */,
+				696052C01981C44B00793F70 /* ViewController.m in Sources */,
+				69166877198916D2001FA58C /* InfoViewController.m in Sources */,
+				696052E01981C88000793F70 /* AddUserInfoViewController.m in Sources */,
+				696898A5198B04E800F28188 /* SinView.m in Sources */,
+				696052BD1981C44B00793F70 /* AppDelegate.m in Sources */,
+				696052BA1981C44B00793F70 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		696052C61981C44C00793F70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				696052D11981C44C00793F70 /* BiorhtthmTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		696052CC1981C44C00793F70 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 696052B31981C44B00793F70 /* Biorhythm */;
+			targetProxy = 696052CB1981C44C00793F70 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		696052C11981C44C00793F70 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				696052C21981C44C00793F70 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		696052D21981C44C00793F70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		696052D31981C44C00793F70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		696052D51981C44C00793F70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = Biorhtthm/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = Biorhythm;
+			};
+			name = Debug;
+		};
+		696052D61981C44C00793F70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = Biorhtthm/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = Biorhythm;
+			};
+			name = Release;
+		};
+		696052D81981C44C00793F70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Biorhtthm.app/Biorhtthm";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = BiorhtthmTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = BiorhythmTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		696052D91981C44C00793F70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Biorhtthm.app/Biorhtthm";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = BiorhtthmTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = BiorhythmTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		696052AF1981C44B00793F70 /* Build configuration list for PBXProject "Biorhythm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				696052D21981C44C00793F70 /* Debug */,
+				696052D31981C44C00793F70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		696052D41981C44C00793F70 /* Build configuration list for PBXNativeTarget "Biorhythm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				696052D51981C44C00793F70 /* Debug */,
+				696052D61981C44C00793F70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		696052D71981C44C00793F70 /* Build configuration list for PBXNativeTarget "BiorhythmTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				696052D81981C44C00793F70 /* Debug */,
+				696052D91981C44C00793F70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 696052AC1981C44B00793F70 /* Project object */;
+}
