@@ -101,7 +101,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - 不允许横屏
 
+//-(NSUInteger)supportedInterfaceOrientations
+//
+//{
+//    return UIInterfaceOrientationMaskPortrait;
+//}
 #pragma mark - SQLite3 data
 
 - (void) openOrCreatDatabase

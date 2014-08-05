@@ -26,7 +26,7 @@
     UIProgressView *pProgressView;
     UIProgressView *iProgressView;
     UIProgressView *mProgressView;
-    
+    UIScrollView *scrollView;
 }
 
 @synthesize userName,age,totalDays,pValue,iValue,mValue;
@@ -45,7 +45,11 @@
 //    titleLabel.backgroundColor = [UIColor colorWithRed:20 green:20 blue:20 alpha:0.6];
     titleLabel.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:titleLabel];
-    
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    backButton.frame = CGRectMake(10, 60, 60, 30);
+    [backButton addTarget:self action:@selector(backButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [backButton setTitle:@"Back" forState:UIControlStateNormal];
+    [self.view addSubview:backButton];
     
     UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 85, 100, 40)];
     nameLabel.text = [NSString stringWithFormat:@"姓名: %@",userName];
@@ -123,66 +127,19 @@
   
     
     
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    backButton.frame = CGRectMake(10, 60, 60, 30);
-    [backButton addTarget:self action:@selector(backButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [backButton setTitle:@"Back" forState:UIControlStateNormal];
-    [self.view addSubview:backButton];
-    
-    
-    UIButton *pickUpMonth = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    pickUpMonth.frame = CGRectMake(295, 90, 50, 30);
-    [pickUpMonth addTarget:self action:@selector(pickUpDateButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    pickUpMonth.tag = 105;
-//    pickUpMonth.backgroundColor = [UIColor redColor];
-    [pickUpMonth setTitle:@"上个月" forState:UIControlStateNormal];
-    [self.view addSubview:pickUpMonth];
-    
-    UIButton *pickYesterday = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    pickYesterday.frame = CGRectMake(350, 90, 50, 30);
-    [pickYesterday addTarget:self action:@selector(pickUpDateButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    pickYesterday.tag = 120;
-//    pickYesterday.backgroundColor = [UIColor redColor];
-    [pickYesterday setTitle:@"昨天" forState:UIControlStateNormal];
-    [self.view addSubview:pickYesterday];
-    
-    UIButton *pickToday = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    pickToday.frame = CGRectMake(405, 90, 50, 30);
-    [pickToday addTarget:self action:@selector(pickUpDateButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    pickToday.tag = 125;
-//    pickToday.backgroundColor = [UIColor redColor];
-    [pickToday setTitle:@"今天" forState:UIControlStateNormal];
-    [self.view addSubview:pickToday];
-    
-    UIButton *pickTomorroy = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    pickTomorroy.frame = CGRectMake(460, 90, 50, 30);
-    [pickTomorroy addTarget:self action:@selector(pickUpDateButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    pickTomorroy.tag = 130;
-//    pickTomorroy.backgroundColor = [UIColor redColor];
-    [pickTomorroy setTitle:@"明天" forState:UIControlStateNormal];
-    [self.view addSubview:pickTomorroy];
-    
-    UIButton *pickUpDateButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    pickUpDateButton.frame = CGRectMake(515, 90, 50, 30);
-    [pickUpDateButton addTarget:self action:@selector(pickUpDateButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    pickUpDateButton.tag = 135;
-//    pickUpDateButton.backgroundColor = [UIColor redColor];
-    [pickUpDateButton setTitle:@"下个月" forState:UIControlStateNormal];
-    [self.view addSubview:pickUpDateButton];
-    
     [self setOritation];
     
-    UIScrollView *scrollView = [[UIScrollView alloc] init];
-    scrollView.frame = CGRectMake(2, 120, 564, 230);
-    [self.view addSubview:scrollView];
-    UIImage *image = [UIImage imageNamed:@"FWA10.jpg"];
-    _imageView = [[UIImageView alloc] initWithImage:image];
-    _imageView.frame = CGRectMake(0, 0, image.size.width, 230);
-    [scrollView addSubview:_imageView];
-    scrollView.contentSize = CGSizeMake(_imageView.frame.size.width, _imageView.frame.size.height);
-    scrollView.bounces = NO;
-    scrollView.showsHorizontalScrollIndicator = NO;
-    
+//    UIScrollView *scrollView = [[UIScrollView alloc] init];
+//    scrollView.frame = CGRectMake(2, 120, 564, 230);
+//    [self.view addSubview:scrollView];
+//    UIImage *image = [UIImage imageNamed:@"FWA10.jpg"];
+//    _imageView = [[UIImageView alloc] initWithImage:image];
+//    _imageView.frame = CGRectMake(0, 0, image.size.width, 230);
+//    [scrollView addSubview:_imageView];
+//    scrollView.contentSize = CGSizeMake(_imageView.frame.size.width, _imageView.frame.size.height);
+//    scrollView.bounces = NO;
+//    scrollView.showsHorizontalScrollIndicator = NO;
+
     
 }
 - (void)pickUpDateButtonClicked:(UIButton *)sender{
@@ -269,13 +226,101 @@
     self.view.bounds = CGRectMake(0, 54, self.view.frame.size.width, self.view.frame.size.height);
     self.view.transform = CGAffineTransformMakeRotation(-M_PI*1.5);
     [UIView commitAnimations];
+    
+    
+    
+    [self drawSinCurve];
 }
 - (BOOL)prefersStatusBarHidden
 {
     return YES;//隐藏为YES，显示为NO
 }
 
+- (void)drawSinCurve {
+    UIGraphicsBeginImageContext(CGSizeMake(568, 230));
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSetStrokeColorWithColor(ctx, [[UIColor redColor]CGColor]);
+    
+    //x
+    CGContextMoveToPoint(ctx, 2, 0);
+    CGContextAddLineToPoint(ctx, 2, 300);
+    for (int i = 0; i<180; i++) {
+        CGContextMoveToPoint(ctx, 2, 1+10*i);
+        CGContextAddLineToPoint(ctx, 3, 1+10*i);
+    }
+    
+    //y
+    CGContextMoveToPoint(ctx, 0, 100);
+    CGContextAddLineToPoint(ctx, 300, 100);
+    for (int j = 0; j<180; j++) {
+        CGContextMoveToPoint(ctx, 1+10*j , 100);
+        CGContextAddLineToPoint(ctx, 1+10*j, 98);
+    }
+    CGContextStrokePath(ctx);
+    
+    
+    
+    CGContextSetStrokeColorWithColor(ctx, [[UIColor blueColor]CGColor]);
+    CGContextMoveToPoint(ctx, 5, 100);
+    
+    for (int z=0; z<320; z++) {
+        float y = [self sin:[self huDuFromdu:2.25*z]];
+        
+        CGContextAddLineToPoint(ctx, 10+z, 100-40*y);
+    }
+    CGContextStrokePath(ctx);
+    
+    CGContextSetStrokeColorWithColor(ctx, [[UIColor redColor]CGColor]);
+    CGContextMoveToPoint(ctx, 5, 100);
+    
+    for (int z=0; z<568*2; z++) {
+        float y = [self sin:[self huDuFromdu:6.25*z]];
+        
+        CGContextAddLineToPoint(ctx, 10+z, 100-40*y);
+    }
+    CGContextStrokePath(ctx);
+    
+    CGContextSetStrokeColorWithColor(ctx, [[UIColor blackColor]CGColor]);
+    CGContextMoveToPoint(ctx, 5, 100);
+    
+    for (int z=0; z<320; z++) {
+        float y = [self sin:[self huDuFromdu:3.25*z]];
+        
+        CGContextAddLineToPoint(ctx, 10+z, 100-40*y);
+    }
+    CGContextStrokePath(ctx);
+    
+    scrollView = [[UIScrollView alloc] init];
+    scrollView.frame = CGRectMake(2, 100, 568, 230);
+    [self.view addSubview:scrollView];
+    //    UIImage *image = [UIImage imageNamed:@"FWA10.jpg"];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
 
+    _imageView = [[UIImageView alloc] initWithImage:image];
+    _imageView.frame = CGRectMake(2, 0,568*2, 230);
+    [scrollView addSubview:_imageView];
+    scrollView.contentSize = CGSizeMake(_imageView.frame.size.width, _imageView.frame.size.height);
+    scrollView.bounces = NO;
+    scrollView.showsHorizontalScrollIndicator = NO;
+
+}
+
+#pragma mark 度转弧度
+- (float)huDuFromdu:(float)du
+{
+    return M_PI*(du/180);
+}
+#pragma mark 计算sin cos
+- (float)sin:(float)a
+{
+    return 2*sinf(a);
+}
+- (float)cos:(float)a
+{
+    return cosf(a);
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
