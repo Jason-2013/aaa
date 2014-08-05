@@ -42,6 +42,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 88, 568, 0.5)];
+    self.view.backgroundColor = [UIColor greenColor];
 //    titleLabel.backgroundColor = [UIColor colorWithRed:20 green:20 blue:20 alpha:0.6];
     titleLabel.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:titleLabel];
@@ -237,12 +238,12 @@
 }
 
 - (void)drawSinCurve {
-    UIGraphicsBeginImageContext(CGSizeMake(568, 230));
+    UIGraphicsBeginImageContext(CGSizeMake(568*2, 230));
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextSetStrokeColorWithColor(ctx, [[UIColor redColor]CGColor]);
     
     //x
-    CGContextMoveToPoint(ctx, 2, 0);
+    CGContextMoveToPoint(ctx, 2, 12);
     CGContextAddLineToPoint(ctx, 2, 300);
     for (int i = 0; i<180; i++) {
         CGContextMoveToPoint(ctx, 2, 1+10*i);
@@ -252,7 +253,7 @@
     //y
     CGContextMoveToPoint(ctx, 0, 100);
     CGContextAddLineToPoint(ctx, 300, 100);
-    for (int j = 0; j<180; j++) {
+    for (int j = 0; j<568*2; j++) {
         CGContextMoveToPoint(ctx, 1+10*j , 100);
         CGContextAddLineToPoint(ctx, 1+10*j, 98);
     }
@@ -261,32 +262,34 @@
     
     
     CGContextSetStrokeColorWithColor(ctx, [[UIColor blueColor]CGColor]);
-    CGContextMoveToPoint(ctx, 5, 100);
+    CGContextMoveToPoint(ctx, 2, 100);
     
-    for (int z=0; z<320; z++) {
-        float y = [self sin:[self huDuFromdu:2.25*z]];
+    for (int z=0; z<568*2; z++) {
+        float y = 2*sinf((((360*(9638+z))/(23*10))*M_PI)/180);
         
-        CGContextAddLineToPoint(ctx, 10+z, 100-40*y);
+        CGContextAddLineToPoint(ctx, 2+z, 100-40*y);
     }
     CGContextStrokePath(ctx);
     
     CGContextSetStrokeColorWithColor(ctx, [[UIColor redColor]CGColor]);
-    CGContextMoveToPoint(ctx, 5, 100);
+    CGContextMoveToPoint(ctx, 2, 100);
     
     for (int z=0; z<568*2; z++) {
-        float y = [self sin:[self huDuFromdu:6.25*z]];
+        float y = 2*sinf((((360*(9638+z))/(33*10))*M_PI)/180);
         
-        CGContextAddLineToPoint(ctx, 10+z, 100-40*y);
+        CGContextAddLineToPoint(ctx, 2+z, 100-40*y);
     }
     CGContextStrokePath(ctx);
     
     CGContextSetStrokeColorWithColor(ctx, [[UIColor blackColor]CGColor]);
-    CGContextMoveToPoint(ctx, 5, 100);
+    CGContextMoveToPoint(ctx, 2, 100);
     
-    for (int z=0; z<320; z++) {
-        float y = [self sin:[self huDuFromdu:3.25*z]];
-        
-        CGContextAddLineToPoint(ctx, 10+z, 100-40*y);
+    for (int z=0; z<568*2; z++) {
+        float y = 2*sin((((360*(9638+z))/(28*10))*M_PI)/180);
+//        NSString *yValue = [NSString stringWithFormat:@"%f",y*50];
+//        NSLog(@"intValue %d",[yValue intValue]);
+//        float yy =  2*sin((z+y)*360*M_PI/180);
+        CGContextAddLineToPoint(ctx, 2+z, 100-40*y);
     }
     CGContextStrokePath(ctx);
     

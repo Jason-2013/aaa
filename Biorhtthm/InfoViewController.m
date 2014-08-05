@@ -7,7 +7,6 @@
 //
 
 #import "InfoViewController.h"
-#import "SinView.h"
 
 @interface InfoViewController ()
 

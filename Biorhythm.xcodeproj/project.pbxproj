@@ -21,7 +21,6 @@
 		696052DB1981C76000793F70 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 696052DA1981C76000793F70 /* libsqlite3.dylib */; };
 		696052DF1981C88000793F70 /* AddUserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 696052DD1981C88000793F70 /* AddUserInfoViewController.xib */; };
 		696052E01981C88000793F70 /* AddUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 696052DE1981C88000793F70 /* AddUserInfoViewController.m */; };
-		696898A5198B04E800F28188 /* SinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 696898A4198B04E800F28188 /* SinView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,8 +57,6 @@
 		696052DC1981C88000793F70 /* AddUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddUserInfoViewController.h; sourceTree = "<group>"; };
 		696052DD1981C88000793F70 /* AddUserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddUserInfoViewController.xib; sourceTree = "<group>"; };
 		696052DE1981C88000793F70 /* AddUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddUserInfoViewController.m; sourceTree = "<group>"; };
-		696898A3198B04E800F28188 /* SinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinView.h; sourceTree = "<group>"; };
-		696898A4198B04E800F28188 /* SinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,8 +107,6 @@
 				696052BF1981C44B00793F70 /* ViewController.m */,
 				692DFB2B19838BA400F97AF5 /* DetailViewController.h */,
 				692DFB2C19838BA400F97AF5 /* DetailViewController.m */,
-				696898A3198B04E800F28188 /* SinView.h */,
-				696898A4198B04E800F28188 /* SinView.m */,
 				692DFB2D19838BA400F97AF5 /* DetailViewController.xib */,
 				696052DC1981C88000793F70 /* AddUserInfoViewController.h */,
 				696052DE1981C88000793F70 /* AddUserInfoViewController.m */,
@@ -259,7 +254,6 @@
 				696052C01981C44B00793F70 /* ViewController.m in Sources */,
 				69166877198916D2001FA58C /* InfoViewController.m in Sources */,
 				696052E01981C88000793F70 /* AddUserInfoViewController.m in Sources */,
-				696898A5198B04E800F28188 /* SinView.m in Sources */,
 				696052BD1981C44B00793F70 /* AppDelegate.m in Sources */,
 				696052BA1981C44B00793F70 /* main.m in Sources */,
 			);
