@@ -238,10 +238,89 @@
 }
 
 - (void)drawSinCurve {
-    UIGraphicsBeginImageContext(CGSizeMake(568*2, 230));
+    UIGraphicsBeginImageContext(CGSizeMake(568*10, 230));
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextSetStrokeColorWithColor(ctx, [[UIColor redColor]CGColor]);
     
+    for (int i=0; i<568*10; i+=7) {
+        CGContextSetRGBFillColor(ctx, 0, 0, 0, 1);
+        CGContextSelectFont(ctx, "Helvetica", 10, kCGEncodingMacRoman);
+        
+        // 坐标变换
+        CGAffineTransform flip = CGAffineTransformMake(1, 0, 0, -1, 0, 0);
+        CGContextSetTextMatrix(ctx, flip);
+        CGContextShowTextAtPoint(ctx, 11 + 20*i, 185, "Mon", 3);
+        
+    }
+    
+    for (int i=0; i<568*10; i+=7) {
+        CGContextSetRGBFillColor(ctx, 0, 0, 0, 1);
+        CGContextSelectFont(ctx, "Helvetica", 10, kCGEncodingMacRoman);
+        
+        // 坐标变换
+        CGAffineTransform flip = CGAffineTransformMake(1, 0, 0, -1, 0, 0);
+        CGContextSetTextMatrix(ctx, flip);
+        CGContextShowTextAtPoint(ctx, 31 + 20*i, 185, "Tue", 3);
+        
+    }
+    
+    for (int i=0; i<568*10; i+=7) {
+        CGContextSetRGBFillColor(ctx, 0, 0, 0, 1);
+        CGContextSelectFont(ctx, "Helvetica", 10, kCGEncodingMacRoman);
+        
+        // 坐标变换
+        CGAffineTransform flip = CGAffineTransformMake(1, 0, 0, -1, 0, 0);
+        CGContextSetTextMatrix(ctx, flip);
+        CGContextShowTextAtPoint(ctx, 51 + 20*i, 185, "Thu", 3);
+        
+    }
+    
+    for (int i=0; i<568*10; i+=7) {
+        CGContextSetRGBFillColor(ctx, 0, 0, 0, 1);
+        CGContextSelectFont(ctx, "Helvetica", 10, kCGEncodingMacRoman);
+        
+        // 坐标变换
+        CGAffineTransform flip = CGAffineTransformMake(1, 0, 0, -1, 0, 0);
+        CGContextSetTextMatrix(ctx, flip);
+        CGContextShowTextAtPoint(ctx, 71 + 20*i, 185, "Wen", 3);
+        
+    }
+    
+    for (int i=0; i<568*10; i+=7) {
+        CGContextSetRGBFillColor(ctx, 0, 0, 0, 1);
+        CGContextSelectFont(ctx, "Helvetica", 10, kCGEncodingMacRoman);
+        
+        // 坐标变换
+        CGAffineTransform flip = CGAffineTransformMake(1, 0, 0, -1, 0, 0);
+        CGContextSetTextMatrix(ctx, flip);
+        CGContextShowTextAtPoint(ctx, 91 + 20*i, 185, "Fir", 3);
+        
+    }
+    
+    for (int i=0; i<568*10; i+=7) {
+        CGContextSetRGBFillColor(ctx, 0, 0, 0, 1);
+        CGContextSelectFont(ctx, "Helvetica", 10, kCGEncodingMacRoman);
+        
+        // 坐标变换
+        CGAffineTransform flip = CGAffineTransformMake(1, 0, 0, -1, 0, 0);
+        CGContextSetTextMatrix(ctx, flip);
+        CGContextShowTextAtPoint(ctx, 111 + 20*i, 185, "Sat", 3);
+        
+    }
+    
+    for (int i=0; i<568*10; i+=7) {
+        CGContextSetRGBFillColor(ctx, 0, 0, 0, 1);
+        CGContextSelectFont(ctx, "Helvetica", 10, kCGEncodingMacRoman);
+        
+        // 坐标变换
+        CGAffineTransform flip = CGAffineTransformMake(1, 0, 0, -1, 0, 0);
+        CGContextSetTextMatrix(ctx, flip);
+        CGContextShowTextAtPoint(ctx, 131 + 20*i, 185, "Sun", 3);
+        
+    }
+  
+    
+
 //    //x
 //    CGContextMoveToPoint(ctx, 2, 15);
 //    CGContextAddLineToPoint(ctx, 2, 185);
@@ -253,7 +332,7 @@
     //y
 //    CGContextMoveToPoint(ctx, 0, 100);
 //    CGContextAddLineToPoint(ctx, 300, 100);
-    for (int j = 0; j<568*2; j++) {
+    for (int j = 0; j<568*10; j++) {
         CGContextMoveToPoint(ctx, 10+20*j , 99);
         CGContextAddLineToPoint(ctx, 10+20*j, 15);
         CGContextMoveToPoint(ctx, 10+20*j , 185);
@@ -266,7 +345,7 @@
     CGContextSetStrokeColorWithColor(ctx, [[UIColor blueColor]CGColor]);
     CGContextMoveToPoint(ctx, 10, 100);
     
-    for (int z=0; z<568*2; z++) {
+    for (int z=0; z<568*10; z++) {
         float y = 2*sinf((((360*(9638+z))/(23*10))*M_PI)/180);
         
         CGContextAddLineToPoint(ctx, 10+z, 100-40*y);
@@ -276,7 +355,7 @@
     CGContextSetStrokeColorWithColor(ctx, [[UIColor redColor]CGColor]);
     CGContextMoveToPoint(ctx, 10, 100);
     
-    for (int z=0; z<568*2; z++) {
+    for (int z=0; z<568*10; z++) {
         float y = 2*sinf((((360*(9638+z))/(33*10))*M_PI)/180);
         
         CGContextAddLineToPoint(ctx, 10+z, 100-40*y);
@@ -286,7 +365,7 @@
     CGContextSetStrokeColorWithColor(ctx, [[UIColor blackColor]CGColor]);
     CGContextMoveToPoint(ctx, 10, 100);
     
-    for (int z=0; z<568*2; z++) {
+    for (int z=0; z<568*10; z++) {
         float y = 2*sin((((360*(9638+z))/(28*10))*M_PI)/180);
 //        NSString *yValue = [NSString stringWithFormat:@"%f",y*50];
 //        NSLog(@"intValue %d",[yValue intValue]);
@@ -313,7 +392,7 @@
     UIGraphicsEndImageContext();
 
     _imageView = [[UIImageView alloc] initWithImage:image];
-    _imageView.frame = CGRectMake(2, 0,568*2, 230);
+    _imageView.frame = CGRectMake(2, 0,568*10, 230);
     [scrollView addSubview:_imageView];
     scrollView.contentSize = CGSizeMake(_imageView.frame.size.width, _imageView.frame.size.height);
     scrollView.bounces = NO;

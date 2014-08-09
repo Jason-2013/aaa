@@ -21,7 +21,6 @@
     NSMutableArray *_userNameArray;
     NSMutableDictionary *_userInfoDictionary;
     AddUserInfoViewController *_auivc;
-    DetailViewController *_dvc;
     InfoViewController *_ivc;
 
     NSString *nsNameStr;
@@ -72,7 +71,6 @@
     self.navigationItem.rightBarButtonItem = addButton;
 
     _auivc = [[AddUserInfoViewController alloc]init];
-    _dvc = [[DetailViewController alloc]init];
     _ivc = [[InfoViewController alloc]init];
     
     _userInfoDictionary = [[NSMutableDictionary alloc]initWithCapacity:0];
@@ -440,16 +438,34 @@
 //        NSDate *object = self.objects[indexPath.row];
 //        self.detailViewController.detailItem = object;
     }
+    
+    /*
+     NewsListViewController *lvc=[[NewsListViewController alloc] init];
+     CategoryItem *item=[categoryArray objectAtIndex:indexPath.section];
+     NSDictionary *dict=[item.array objectAtIndex:indexPath.row];
+     NSString *url=[dict objectForKey:CONTENT_URL];
+     lvc.url=url;
+     
+     lvc.cid=[[Database sharedDatabase] categoryID:item.name subname:[dict objectForKey:CONTENT_NAME]];
+     
+     //UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
+     //lvc.url=cell.detailTextLabel.text;
+     [self.navigationController pushViewController:lvc animated:YES];
+
+     */
     NSLog(@"%ld indexPath choosed",(long)indexPath.row);
-    _dvc.userName = [_userNameArray objectAtIndex:indexPath.row];
-    _dvc.age = [[_userAgeArray objectAtIndex:indexPath.row]intValue];
-    _dvc.totalDays = [[_totalDaysArray objectAtIndex:indexPath.row] intValue];
-    _dvc.pValue = [[_pValueArray objectAtIndex:indexPath.row]intValue];
-    _dvc.iValue = [[_iValueArray objectAtIndex:indexPath.row]intValue];
-    _dvc.mValue = [[_mValueArray objectAtIndex:indexPath.row]intValue];
+    
+    DetailViewController *dvc = [[DetailViewController alloc]init];
+  
+    dvc.userName = [_userNameArray objectAtIndex:indexPath.row];
+    dvc.age = [[_userAgeArray objectAtIndex:indexPath.row]intValue];
+    dvc.totalDays = [[_totalDaysArray objectAtIndex:indexPath.row] intValue];
+    dvc.pValue = [[_pValueArray objectAtIndex:indexPath.row]intValue];
+    dvc.iValue = [[_iValueArray objectAtIndex:indexPath.row]intValue];
+    dvc.mValue = [[_mValueArray objectAtIndex:indexPath.row]intValue];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self.navigationController pushViewController:_dvc animated:YES];
+    [self.navigationController pushViewController:dvc animated:YES];
 }
 
 
