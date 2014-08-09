@@ -99,6 +99,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 #pragma mark - 不允许横屏
 
 //-(NSUInteger)supportedInterfaceOrientations
@@ -192,55 +193,6 @@
     }
     else NSLog(@"error !! 删除失败！");
 }
-//删除数据
-/*
-- (void) deleteTestList {
-    
-        sqlite3_stmt *statement;
-        //组织SQL语句
-        static char *sql = "delete from userInfor  where testID = ? and testValue = ? and testName = ?";
-        //将SQL语句放入sqlite3_stmt中
-        int success = sqlite3_prepare_v2(database, sql, -1, &statement, NULL);
-        if (success != SQLITE_OK) {
-            NSLog(@"Error: failed to delete:testTable");
-            sqlite3_close(database);
-        }
-        
-        //这里的数字1，2，3代表第几个问号。这里只有1个问号，这是一个相对比较简单的数据库操作，真正的项目中会远远比这个复杂
-        sqlite3_bind_int(statement, 1, deletList.sqlID);
-        sqlite3_bind_text(statement, 2, [deletList.sqlText UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(statement, 3, [deletList.sqlname UTF8String], -1, SQLITE_TRANSIENT);
-        //执行SQL语句。这里是更新数据库
-        success = sqlite3_step(statement);
-        //释放statement
-        sqlite3_finalize(statement);
-        
-        //如果执行失败
-        if (success == SQLITE_ERROR) {
-            NSLog(@"Error: failed to delete the database with message.");
-            //关闭数据库
-            sqlite3_close(database);
-        }
-        //执行成功后依然要关闭数据库
-        sqlite3_close(database);
-    }
-
-}
- 
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
- forRowAtIndexPath:(NSIndexPath *)indexPath{
- NSUInteger row = [indexPath row];
- NSString *values = [list objectAtIndex:row];
- NSString *delete = [[NSString alloc] initWithFormat:@"DELETE FROM NOSWEETS WHERE FIELD_DATA = '%@';", values];
- char * errorMsg;
- if (sqlite3_exec (database, [delete UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK){
- NSAssert1(0, @"Error updating tables: %s", errorMsg);
- sqlite3_free(errorMsg);
- }
- [self.list removeObjectAtIndex:row];
- [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- */
 
 -(void)deleteOneUserInfo{
     
@@ -428,42 +380,20 @@
 
 }
 
-//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-//    // Return NO if you do not want the specified item to be editable.
-//    return YES;
-//}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
 //        NSDate *object = self.objects[indexPath.row];
 //        self.detailViewController.detailItem = object;
     }
-    
-    /*
-     NewsListViewController *lvc=[[NewsListViewController alloc] init];
-     CategoryItem *item=[categoryArray objectAtIndex:indexPath.section];
-     NSDictionary *dict=[item.array objectAtIndex:indexPath.row];
-     NSString *url=[dict objectForKey:CONTENT_URL];
-     lvc.url=url;
-     
-     lvc.cid=[[Database sharedDatabase] categoryID:item.name subname:[dict objectForKey:CONTENT_NAME]];
-     
-     //UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
-     //lvc.url=cell.detailTextLabel.text;
-     [self.navigationController pushViewController:lvc animated:YES];
-
-     */
     NSLog(@"%ld indexPath choosed",(long)indexPath.row);
-    
     DetailViewController *dvc = [[DetailViewController alloc]init];
-  
     dvc.userName = [_userNameArray objectAtIndex:indexPath.row];
     dvc.age = [[_userAgeArray objectAtIndex:indexPath.row]intValue];
     dvc.totalDays = [[_totalDaysArray objectAtIndex:indexPath.row] intValue];
     dvc.pValue = [[_pValueArray objectAtIndex:indexPath.row]intValue];
     dvc.iValue = [[_iValueArray objectAtIndex:indexPath.row]intValue];
     dvc.mValue = [[_mValueArray objectAtIndex:indexPath.row]intValue];
-    
+
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.navigationController pushViewController:dvc animated:YES];
 }

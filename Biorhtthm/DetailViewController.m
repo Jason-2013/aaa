@@ -320,18 +320,6 @@
     }
   
     
-
-//    //x
-//    CGContextMoveToPoint(ctx, 2, 15);
-//    CGContextAddLineToPoint(ctx, 2, 185);
-//    for (int i = 0; i<17; i++) {
-//        CGContextMoveToPoint(ctx, 2, 15+10*i);
-//        CGContextAddLineToPoint(ctx, 4, 15+10*i);
-//    }
-    
-    //y
-//    CGContextMoveToPoint(ctx, 0, 100);
-//    CGContextAddLineToPoint(ctx, 300, 100);
     for (int j = 0; j<568*10; j++) {
         CGContextMoveToPoint(ctx, 10+20*j , 99);
         CGContextAddLineToPoint(ctx, 10+20*j, 15);
