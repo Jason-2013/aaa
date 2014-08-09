@@ -43,7 +43,6 @@
     // Do any additional setup after loading the view from its nib.
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 88, 568, 0.5)];
     self.view.backgroundColor = [UIColor greenColor];
-//    titleLabel.backgroundColor = [UIColor colorWithRed:20 green:20 blue:20 alpha:0.6];
     titleLabel.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:titleLabel];
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -62,21 +61,21 @@
     totalDaysLabel.text = [NSString stringWithFormat:@"天数: %d",totalDays];
     [self.view addSubview:totalDaysLabel];
     
-    UILabel *pLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 342, 40, 40)];
+    UILabel *pLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 280, 40, 40)];
     pLabel.text = @"体力:";
     [self.view addSubview:pLabel];
     
-    UILabel *iLabel = [[UILabel alloc]initWithFrame:CGRectMake(200, 342, 40, 40)];
+    UILabel *iLabel = [[UILabel alloc]initWithFrame:CGRectMake(200, 280, 40, 40)];
     iLabel.text = @"智力:";
     [self.view addSubview:iLabel];
     
-    UILabel *mLabel = [[UILabel alloc]initWithFrame:CGRectMake(390, 342, 40, 40)];
+    UILabel *mLabel = [[UILabel alloc]initWithFrame:CGRectMake(390, 280, 40, 40)];
     mLabel.text = @"情绪:";
     [self.view addSubview:mLabel];
     
     
 
-    pProgressView = [[UIProgressView alloc]initWithFrame:CGRectMake(50, 362, 80, 40)];
+    pProgressView = [[UIProgressView alloc]initWithFrame:CGRectMake(50, 300, 80, 40)];
     pProgressView.progressViewStyle = UIProgressViewStyleDefault;
     if (((float)pValue/100) < 0.0) {
         pProgressView.progress =(-(float)pValue/100);
@@ -86,9 +85,8 @@
     }
     [self.view addSubview:pProgressView];
     
-    iProgressView = [[UIProgressView alloc]initWithFrame:CGRectMake(240, 362, 80, 40)];
+    iProgressView = [[UIProgressView alloc]initWithFrame:CGRectMake(240, 300, 80, 40)];
     iProgressView.progressViewStyle = UIProgressViewStyleDefault;
-//    iProgressView.progress = (float)iValue/100;
     if (((float)iValue/100) < 0.0) {
         iProgressView.progress =(-(float)iValue/100);
         iProgressView.progressTintColor = [UIColor colorWithRed:(255-iValue) green:0 blue:0 alpha:1];
@@ -97,9 +95,8 @@
     }
     [self.view addSubview:iProgressView];
     
-    mProgressView = [[UIProgressView alloc]initWithFrame:CGRectMake(430, 362, 80, 40)];
+    mProgressView = [[UIProgressView alloc]initWithFrame:CGRectMake(430, 300, 80, 40)];
     mProgressView.progressViewStyle = UIProgressViewStyleDefault;
-//    mProgressView.progress = (float)mValue/100;
     if (((float)mValue/100) < 0.0) {
         mProgressView.progress =(-(float)mValue/100);
         mProgressView.progressTintColor = [UIColor colorWithRed:(255-mValue) green:0 blue:0 alpha:1];
@@ -108,39 +105,27 @@
     }
     [self.view addSubview:mProgressView];
    
-    pValueLabel = [[UILabel alloc]initWithFrame:CGRectMake(130, 342, 50, 40)];
+    pValueLabel = [[UILabel alloc]initWithFrame:CGRectMake(130, 280, 50, 40)];
     pValueLabel.textAlignment = NSTextAlignmentRight;
     pValueLabel.text = [NSString stringWithFormat:@"%d%%",pValue];
     todayPValue = pValueLabel.text;
     [self.view addSubview:pValueLabel];
     
-    iValueLabel = [[UILabel alloc]initWithFrame:CGRectMake(320, 342, 50, 40)];
+    iValueLabel = [[UILabel alloc]initWithFrame:CGRectMake(320, 280, 50, 40)];
     iValueLabel.textAlignment = NSTextAlignmentRight;
     iValueLabel.text = [NSString stringWithFormat:@"%d%%",iValue];
     todayIValue = iValueLabel.text;
     [self.view addSubview:iValueLabel];
     
-    mValueLabel = [[UILabel alloc]initWithFrame:CGRectMake(500, 342, 50, 40)];
+    mValueLabel = [[UILabel alloc]initWithFrame:CGRectMake(500, 280, 50, 40)];
     mValueLabel.textAlignment = NSTextAlignmentRight;
     mValueLabel.text = [NSString stringWithFormat:@"%d%%",mValue];
     todayMValue = mValueLabel.text;
     [self.view addSubview:mValueLabel];
   
-    
-    
     [self setOritation];
     
-//    UIScrollView *scrollView = [[UIScrollView alloc] init];
-//    scrollView.frame = CGRectMake(2, 120, 564, 230);
-//    [self.view addSubview:scrollView];
-//    UIImage *image = [UIImage imageNamed:@"FWA10.jpg"];
-//    _imageView = [[UIImageView alloc] initWithImage:image];
-//    _imageView.frame = CGRectMake(0, 0, image.size.width, 230);
-//    [scrollView addSubview:_imageView];
-//    scrollView.contentSize = CGSizeMake(_imageView.frame.size.width, _imageView.frame.size.height);
-//    scrollView.bounces = NO;
-//    scrollView.showsHorizontalScrollIndicator = NO;
-
+    
     
 }
 - (void)pickUpDateButtonClicked:(UIButton *)sender{
@@ -189,13 +174,7 @@
                 mProgressView.progressTintColor = [UIColor blueColor];
             }
 
-            
-            
-            
-//            if (pValue > 0 && iValue > 0 && mValue > 0) {
-//                NSLog(@"totalDays %d, i %d,pValue %d,   iValue %d,   mValue %d",totalDays, i, pValue, iValue, mValue);
-//            }
-            NSLog(@"totalDays %d,i %d, pValue %d,   iValue %d,   mValue %d",totalDays, i, pValue, iValue, mValue);
+        NSLog(@"totalDays %d,i %d, pValue %d,   iValue %d,   mValue %d",totalDays, i, pValue, iValue, mValue);
         }
 //    }
  
@@ -388,20 +367,20 @@
 
 }
 
-#pragma mark 度转弧度
-- (float)huDuFromdu:(float)du
-{
-    return M_PI*(du/180);
-}
-#pragma mark 计算sin cos
-- (float)sin:(float)a
-{
-    return 2*sinf(a);
-}
-- (float)cos:(float)a
-{
-    return cosf(a);
-}
+//#pragma mark 度转弧度
+//- (float)huDuFromdu:(float)du
+//{
+//    return M_PI*(du/180);
+//}
+//#pragma mark 计算sin cos
+//- (float)sin:(float)a
+//{
+//    return 2*sinf(a);
+//}
+//- (float)cos:(float)a
+//{
+//    return cosf(a);
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
