@@ -131,7 +131,7 @@
     [dateFormatter setDateFormat:@"yy-MM-dd"];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     NSString *dateAndTime = [dateFormatter stringFromDate:date];
-    NSLog(@"%@",dateAndTime);
+//    NSLog(@"dateAndTime %@",dateAndTime);
     UILabel *dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(330, 85, 200, 40)];
     dateLabel.text = [NSString stringWithFormat:@"当前日期: %@",dateAndTime];
     [self.view addSubview:dateLabel];

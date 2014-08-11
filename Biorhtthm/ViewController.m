@@ -312,7 +312,7 @@
     pProgressView.progressViewStyle = UIProgressViewStyleDefault;
     if (((float)pValue/100) < 0.0) {
         pProgressView.progress =(-(float)pValue/100);
-        NSLog(@"pValue is %f",pProgressView.progress);
+//        NSLog(@"pValue is %f",pProgressView.progress);
         pProgressView.progressTintColor = [UIColor colorWithRed:(255-pValue) green:0 blue:0 alpha:1];
     } else {
         pProgressView.progress = (float)pValue/100;
