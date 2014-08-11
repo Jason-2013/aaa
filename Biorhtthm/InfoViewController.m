@@ -31,7 +31,7 @@
     UIImageView *imageView=[[UIImageView alloc] initWithFrame:self.view.frame];
     [self.view addSubview:imageView];
     
-    self.view.backgroundColor=[UIColor blueColor];
+    self.view.backgroundColor=[UIColor whiteColor];
     
     UIGraphicsBeginImageContext(imageView.frame.size);
     [imageView.image drawInRect:CGRectMake(0, 0, imageView.frame.size.width, imageView.frame.size.height)];

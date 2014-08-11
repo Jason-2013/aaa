@@ -45,13 +45,6 @@
 
 @implementation AddUserInfoViewController
 @synthesize dataPicker,userNameTextField;
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    userNameTextField.text = nil;
-    birthdayDateString = nil;
-
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -135,7 +128,6 @@
                                        @"INSERT INTO '%@' ('%@', '%@', '%@','%@','%@', '%@', '%@') VALUES ('%@', '%@','%@', '%@','%@', '%@', '%@')",
                                        TABLENAME, NAME, AGE,TOTALDAYS, PVALUE, IVALUE, MVALUE, USERBIRTHDAY, userNameTextField.text, [NSString stringWithFormat:@"%d",currentYearMinsBirthYear], [NSString stringWithFormat:@"%d",totalDays], [NSString stringWithFormat:@"%d",pValue], [NSString stringWithFormat:@"%d",iValue], [NSString stringWithFormat:@"%d",mValue],userBirthday];
 
-//    [self execSql:insertNameAndBirthday];
     [self execSql:insertTotalDaysAndBiorhythmValues];
 }
 
@@ -174,15 +166,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 #pragma mark - Calculate Biorhythm Value
 
 - (void) calculateBiorhythmValue{
@@ -238,7 +221,6 @@
         case 2:
             day += 31;
     }
-//    printf("- (int)calculateDaysOfMonth:(int)month days:(int)day currentDayMinsBirthDay %d\n",day);
    return day;
 }
 
@@ -246,12 +228,17 @@
 
 - (IBAction)saveButtonClicked:(id)sender {
 
-    [self openOrCreatDatabase];
-    [self insertUserInfo];
-    [_tableView reloadData];
-
-    [self dismissViewControllerAnimated:YES completion:^{
-    }];
+    if ( userNameTextField.text == nil || birthdayDateString == nil) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您输入的信息不完整，请重新输入！" message: birthdayDateString delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil, nil];
+        [alert show];
+    } else {
+        [self openOrCreatDatabase];
+        [self insertUserInfo];
+        [_tableView reloadData];
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
+    }
 }
 
 - (IBAction)cancleButtonClicked:(id)sender {
@@ -305,20 +292,14 @@
     [dateFormatterDay setDateFormat:@"dd"];
     BirthDay = [[dateFormatterDay stringFromDate:selectedDay] intValue];
     NSLog(@"BirthDay is %d",BirthDay);
-
-    
     
     NSDate *selected = [dataPicker date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     birthdayDateString = [dateFormatter stringFromDate:selected];
-    
     NSLog(@"birthdayDateString is %@",birthdayDateString);
-//    [self openOrCreatDatabase];
-//    [self insertUserInfo];
-    
+ 
     [tableView reloadData];
-    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

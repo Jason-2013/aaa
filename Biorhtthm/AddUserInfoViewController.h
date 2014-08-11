@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
 
-@interface AddUserInfoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate >
+@interface AddUserInfoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate ,UITextFieldDelegate >
 {
     sqlite3 *datebase;
 //    UIDatePicker *dataPicker;
