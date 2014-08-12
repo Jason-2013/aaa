@@ -8,7 +8,9 @@
 
 #import "AddUserInfoViewController.h"
 
-#define DBNAME       @"userInfo.sqlite"
+#define DBNAME       @"userInform.sqlite"
+
+#define NAME         @"name"
 #define NAME         @"name"
 #define USERBIRTHDAY @"userbirthday"
 #define AGE          @"age"
@@ -16,13 +18,14 @@
 #define PVALUE       @"pvalue"
 #define IVALUE       @"ivalue"
 #define MVALUE       @"mvalue"
-#define TABLENAME    @"USERINFO"
+#define USERBIRTHDAY @"userbirthday"
+
+#define TABLENAME    @"USERINFORM"
 
 @interface AddUserInfoViewController ()
 {
     UITableView *_tableView;
     NSString *birthdayDateString;
-    NSString *userBirthday;
     
     // 封进去
     int totalDays;
@@ -92,8 +95,9 @@
     }
     
     //创建数据表PERSONINFO的语句
-    NSString *sqlCreateTable2 = @"CREATE TABLE IF NOT EXISTS USERINFO (ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, totalDays TEXT, pValue TEXT, iValue TEXT, mValue TEXT,userbirthday TEXT)";
-    [self execSql:sqlCreateTable2];
+//    NSString *sqlCreateTable = @"CREATE TABLE IF NOT EXISTS USERINFOR (ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, birthdayDate TEXT, birthYear INTEGER, birthMonth INTEGER, birthDay INTEGER)";
+    NSString *sqlCreateTable = @"CREATE TABLE IF NOT EXISTS USERINFORM (ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, totalDays TEXT, pValue TEXT, iValue TEXT, mValue TEXT,userbirthday TEXT)";
+    [self execSql:sqlCreateTable];
 }
 
 
@@ -115,18 +119,19 @@
     [self calculateBiorhythmValue];
     
 //    NSString *insertNameAndBirthday = [NSString stringWithFormat:
-//                                       @"INSERT INTO '%@' ('%@', '%@', '%@') VALUES ('%@', '%@', '%@')",
-//                                       TABLENAME, NAME, AGE, TOTALDAYS, userNameTextField.text, [NSString stringWithFormat:@"%d",currentYearMinsBirthYear], userNameTextField.text];
+//                                       @"INSERT INTO '%@' ('%@', '%@', '%@', '%@', '%@') VALUES ('%@', '%@', '%d', '%d', '%d')",
+//                                       TABLENAME, NAME, USERBIRTHDAY, BIRTHYEAR, BIRTHMONTH, BIRTHDAY, USERBIRTHDAY, userNameTextField.text, birthdayDateString, BirthYear, BirthMonth, BirthDay];
 //    NSString *insertNameAndBirthday = [NSString stringWithFormat:
 //                                       @"INSERT INTO '%@' ('%@', '%@') VALUES ('%@', '%@')",
 //                                       TABLENAME, NAME, AGE, userNameTextField.text, [NSString stringWithFormat:@"%d",currentYearMinsBirthYear]];
 
-//    NSLog(@"name:%@, age:%@, total days:%@, p value:%@, i value:%@, m value%@",userNameTextField.text, [NSString stringWithFormat:@"%d",currentYearMinsBirthYear], [NSString stringWithFormat:@"%d",totalDays], [NSString stringWithFormat:@"%d",pValue], [NSString stringWithFormat:@"%d",iValue], [NSString stringWithFormat:@"%d",mValue]);
+//    NSLog(@"要存入的信息为：name:%@, birthdayDateString:%@, BirthYear:%d, BirthMonth:%d, BirthDay:%d",userNameTextField.text, birthdayDateString, BirthYear, BirthMonth, BirthDay);
     
     
     NSString *insertTotalDaysAndBiorhythmValues = [NSString stringWithFormat:
                                        @"INSERT INTO '%@' ('%@', '%@', '%@','%@','%@', '%@', '%@') VALUES ('%@', '%@','%@', '%@','%@', '%@', '%@')",
-                                       TABLENAME, NAME, AGE,TOTALDAYS, PVALUE, IVALUE, MVALUE, USERBIRTHDAY, userNameTextField.text, [NSString stringWithFormat:@"%d",currentYearMinsBirthYear], [NSString stringWithFormat:@"%d",totalDays], [NSString stringWithFormat:@"%d",pValue], [NSString stringWithFormat:@"%d",iValue], [NSString stringWithFormat:@"%d",mValue],userBirthday];
+                                       TABLENAME, NAME, AGE,TOTALDAYS, PVALUE, IVALUE, MVALUE, USERBIRTHDAY, userNameTextField.text, [NSString stringWithFormat:@"%d",currentYearMinsBirthYear], [NSString stringWithFormat:@"%d",totalDays], [NSString stringWithFormat:@"%d",pValue], [NSString stringWithFormat:@"%d",iValue], [NSString stringWithFormat:@"%d",mValue],birthdayDateString];
+    NSLog(@"要插入的数据为：name:%@  age:%d, totaldays:%@, pValue:%@, iValue:%@, mValue:%@, user birthday:%@",userNameTextField.text, currentYearMinsBirthYear, [NSString stringWithFormat:@"%d",totalDays], [NSString stringWithFormat:@"%d",pValue], [NSString stringWithFormat:@"%d",iValue], [NSString stringWithFormat:@"%d",mValue], birthdayDateString);
 
     [self execSql:insertTotalDaysAndBiorhythmValues];
 }
@@ -135,7 +140,7 @@
 //查询数据库并打印数据
 - (void)searchUserInfo
 {
-    NSString *sqlQuery = @"SELECT * FROM USERINFO";
+    NSString *sqlQuery = @"SELECT * FROM USERINFORM";
     sqlite3_stmt * statement;
     
     if (sqlite3_prepare_v2(datebase, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
@@ -143,7 +148,7 @@
             char *name = (char*)sqlite3_column_text(statement, 1);
             NSString *nsNameStr = [[NSString alloc]initWithUTF8String:name];
             int age = sqlite3_column_int(statement, 2);
-
+            
             char *totalDaysChar = (char*)sqlite3_column_text(statement, 3);
             char *pValueChar = (char*)sqlite3_column_text(statement, 4);
             char *iValueChar = (char*)sqlite3_column_text(statement, 5);
@@ -154,7 +159,7 @@
             NSString *nsIValue = [[NSString alloc]initWithUTF8String:iValueChar];
             NSString *nsMValue = [[NSString alloc]initWithUTF8String:mValueChar];
             NSString *nsUserBirthday = [[NSString alloc]initWithUTF8String:userBirthdayChar];
-
+            
             NSLog(@"数据库中的数据为：name:%@  age:%d, totaldays:%@, pValue:%@, iValue:%@, mValue:%@, user birthday:%@",nsNameStr,age, nsTotalDays, nsPValue, nsIValue, nsMValue, nsUserBirthday);
         }
     }
@@ -279,25 +284,25 @@
     NSDateFormatter *dateFormatterYear = [[NSDateFormatter alloc] init];
     [dateFormatterYear setDateFormat:@"yyyy"];
     BirthYear = [[dateFormatterYear stringFromDate:selectedYear] intValue];
-    NSLog(@"BirthYear is %d",BirthYear);
+//    NSLog(@"BirthYear is %d",BirthYear);
     
     NSDate *selectedMonth = [dataPicker date];
     NSDateFormatter *dateFormatterMonth = [[NSDateFormatter alloc] init];
     [dateFormatterMonth setDateFormat:@"MM"];
     BirthMonth = [[dateFormatterMonth stringFromDate:selectedMonth] intValue];
-    NSLog(@"BirthMonth is %d",BirthMonth);
+//    NSLog(@"BirthMonth is %d",BirthMonth);
     
     NSDate *selectedDay = [dataPicker date];
     NSDateFormatter *dateFormatterDay = [[NSDateFormatter alloc] init];
     [dateFormatterDay setDateFormat:@"dd"];
     BirthDay = [[dateFormatterDay stringFromDate:selectedDay] intValue];
-    NSLog(@"BirthDay is %d",BirthDay);
+//    NSLog(@"BirthDay is %d",BirthDay);
     
     NSDate *selected = [dataPicker date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     birthdayDateString = [dateFormatter stringFromDate:selected];
-    NSLog(@"birthdayDateString is %@",birthdayDateString);
+//    NSLog(@"birthdayDateString is %@",birthdayDateString);
  
     [tableView reloadData];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

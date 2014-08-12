@@ -11,7 +11,7 @@
 #import "DetailViewController.h"
 #import "InfoViewController.h"
 
-#define DBNAME @"userInfo.sqlite"
+#define DBNAME @"userInform.sqlite"
 
 @interface ViewController ()
 {
@@ -121,7 +121,7 @@
         NSLog(@"数据库打开失败");
     }
     //创建数据表PERSONINFO的语句
-    NSString *sqlCreateTable2 = @"CREATE TABLE IF NOT EXISTS USERINFO (ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, totalDays TEXT, pValue TEXT, iValue TEXT, mValue TEXT,userbirthday TEXT)";
+    NSString *sqlCreateTable2 = @"CREATE TABLE IF NOT EXISTS USERINFORM (ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, totalDays TEXT, pValue TEXT, iValue TEXT, mValue TEXT,userbirthday TEXT)";
     [self execSql:sqlCreateTable2];
 }
 //创建数据表  创建一个独立的执行sql语句的方法，传入sql语句，就执行sql语句
@@ -136,7 +136,7 @@
 //查询数据库并打印数据
 - (void)searchUserInfo
 {
-    NSString *sqlQuery = @"SELECT * FROM USERINFO";
+    NSString *sqlQuery = @"SELECT * FROM USERINFORM";
     sqlite3_stmt * statement;
     char *name;
     
@@ -150,12 +150,14 @@
             char *pValueChar = (char*)sqlite3_column_text(statement, 4);
             char *iValueChar = (char*)sqlite3_column_text(statement, 5);
             char *mValueChar = (char*)sqlite3_column_text(statement, 6);
+            char *birthday = (char*)sqlite3_column_text(statement, 7);
             NSString *nsTotalDays = [[NSString alloc]initWithUTF8String:totalDaysChar];
             NSString *nsPValue = [[NSString alloc]initWithUTF8String:pValueChar];
             NSString *nsIValue = [[NSString alloc]initWithUTF8String:iValueChar];
             NSString *nsMValue = [[NSString alloc]initWithUTF8String:mValueChar];
+            NSString *nsBirthday = [[NSString alloc]initWithUTF8String:birthday];
             
-            NSLog(@"查询得到的数据库中的数据为：name:%@  age:%d, totaldays:%@, pValue:%@, iValue:%@, mValue:%@",nsNameStr,age, nsTotalDays, nsPValue, nsIValue, nsMValue);
+            NSLog(@"查询得到的数据库中的数据为：name:%@  age:%d, totaldays:%@, pValue:%@, iValue:%@, mValue:%@, birthday:%@",nsNameStr,age, nsTotalDays, nsPValue, nsIValue, nsMValue,nsBirthday);
             
             [_userInfoDictionary setObject:nsNameStr forKey:@"name"];
             NSString *nsAge = [NSString stringWithFormat:@"%d",age];
@@ -186,7 +188,7 @@
 }
 
 -(void)deleteAllUserInfo{
-    const char *deleteAllSql="delete from userInfo where 1>0";
+    const char *deleteAllSql="delete from USERINFORM where 1>0";
     char *err;
     if(sqlite3_exec(database, deleteAllSql, NULL, NULL, &err)==SQLITE_OK){
         NSLog(@"删除所有数据成功");
@@ -198,7 +200,7 @@
     
     
     
-    NSString *sqlQuery = @"SELECT * FROM USERINFO";
+    NSString *sqlQuery = @"SELECT * FROM USERINFORM";
     sqlite3_stmt * statement;
     char *name;
     
