@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "696052B31981C44B00793F70"
-               BuildableName = "Bio.app"
+               BuildableName = "Biorhythm.app"
                BlueprintName = "Biorhythm"
                ReferencedContainer = "container:Biorhythm.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "696052C91981C44C00793F70"
-               BuildableName = "BioTests.xctest"
+               BuildableName = "BiorhythmTests.xctest"
                BlueprintName = "BiorhythmTests"
                ReferencedContainer = "container:Biorhythm.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "696052B31981C44B00793F70"
-            BuildableName = "Bio.app"
+            BuildableName = "Biorhythm.app"
             BlueprintName = "Biorhythm"
             ReferencedContainer = "container:Biorhythm.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "696052B31981C44B00793F70"
-            BuildableName = "Bio.app"
+            BuildableName = "Biorhythm.app"
             BlueprintName = "Biorhythm"
             ReferencedContainer = "container:Biorhythm.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "696052B31981C44B00793F70"
-            BuildableName = "Bio.app"
+            BuildableName = "Biorhythm.app"
             BlueprintName = "Biorhythm"
             ReferencedContainer = "container:Biorhythm.xcodeproj">
          </BuildableReference>
