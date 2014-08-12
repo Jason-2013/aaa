@@ -397,7 +397,6 @@
     dvc.mValue = [[_mValueArray objectAtIndex:indexPath.row]intValue];
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
     [self.navigationController pushViewController:dvc animated:YES];
 }
 

@@ -12,6 +12,8 @@
 		692DFB2E19838BA400F97AF5 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 692DFB2C19838BA400F97AF5 /* DetailViewController.m */; };
 		692DFB2F19838BA400F97AF5 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 692DFB2D19838BA400F97AF5 /* DetailViewController.xib */; };
 		694CA82C19872F330086189B /* FWA10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 694CA82B19872F330086189B /* FWA10.jpg */; };
+		694D3E13199AC96F002861A0 /* PDFView.m in Sources */ = {isa = PBXBuildFile; fileRef = 694D3E12199AC96F002861A0 /* PDFView.m */; };
+		694D3E15199ACC38002861A0 /* Document.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 694D3E14199ACC38002861A0 /* Document.pdf */; };
 		696052BA1981C44B00793F70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 696052B91981C44B00793F70 /* main.m */; };
 		696052BD1981C44B00793F70 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 696052BC1981C44B00793F70 /* AppDelegate.m */; };
 		696052C01981C44B00793F70 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 696052BF1981C44B00793F70 /* ViewController.m */; };
@@ -41,6 +43,9 @@
 		692DFB2C19838BA400F97AF5 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		692DFB2D19838BA400F97AF5 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		694CA82B19872F330086189B /* FWA10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = FWA10.jpg; sourceTree = "<group>"; };
+		694D3E11199AC96F002861A0 /* PDFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFView.h; sourceTree = "<group>"; };
+		694D3E12199AC96F002861A0 /* PDFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFView.m; sourceTree = "<group>"; };
+		694D3E14199ACC38002861A0 /* Document.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Document.pdf; sourceTree = "<group>"; };
 		696052B41981C44B00793F70 /* Biorhythm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Biorhythm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		696052B81981C44B00793F70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		696052B91981C44B00793F70 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -100,6 +105,7 @@
 		696052B61981C44B00793F70 /* Biorhtthm */ = {
 			isa = PBXGroup;
 			children = (
+				694D3E14199ACC38002861A0 /* Document.pdf */,
 				694CA82B19872F330086189B /* FWA10.jpg */,
 				696052BB1981C44B00793F70 /* AppDelegate.h */,
 				696052BC1981C44B00793F70 /* AppDelegate.m */,
@@ -113,6 +119,8 @@
 				696052DD1981C88000793F70 /* AddUserInfoViewController.xib */,
 				69166874198916D2001FA58C /* InfoViewController.h */,
 				69166875198916D2001FA58C /* InfoViewController.m */,
+				694D3E11199AC96F002861A0 /* PDFView.h */,
+				694D3E12199AC96F002861A0 /* PDFView.m */,
 				69166876198916D2001FA58C /* InfoViewController.xib */,
 				696052C11981C44C00793F70 /* Main.storyboard */,
 				696052C41981C44C00793F70 /* Images.xcassets */,
@@ -233,6 +241,7 @@
 				696052DF1981C88000793F70 /* AddUserInfoViewController.xib in Resources */,
 				69166878198916D2001FA58C /* InfoViewController.xib in Resources */,
 				692DFB2F19838BA400F97AF5 /* DetailViewController.xib in Resources */,
+				694D3E15199ACC38002861A0 /* Document.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +264,7 @@
 				69166877198916D2001FA58C /* InfoViewController.m in Sources */,
 				696052E01981C88000793F70 /* AddUserInfoViewController.m in Sources */,
 				696052BD1981C44B00793F70 /* AppDelegate.m in Sources */,
+				694D3E13199AC96F002861A0 /* PDFView.m in Sources */,
 				696052BA1981C44B00793F70 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
