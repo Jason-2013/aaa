@@ -21,7 +21,9 @@
     NSMutableArray *_userNameArray;
     NSMutableDictionary *_userInfoDictionary;
     AddUserInfoViewController *_auivc;
+    UINavigationController *_aunaivc;
     InfoViewController *_ivc;
+    UINavigationController *_naivc;
 
     NSString *nsNameStr;
     int age;
@@ -71,7 +73,10 @@
     self.navigationItem.rightBarButtonItem = addButton;
 
     _auivc = [[AddUserInfoViewController alloc]init];
+    _aunaivc = [[UINavigationController alloc]initWithRootViewController:_auivc];
     _ivc = [[InfoViewController alloc]init];
+    _naivc = [[UINavigationController alloc]initWithRootViewController:_ivc];
+    
     
     _userInfoDictionary = [[NSMutableDictionary alloc]initWithCapacity:0];
     _userNameArray = [[NSMutableArray alloc]initWithCapacity:0];
@@ -90,14 +95,17 @@
     [self openOrCreatDatabase];
 }
 
-- (void)infoButtonClicked:(UIButton *)sender{
-    [self.navigationController presentViewController:_ivc animated:YES completion:^{
-    }];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 跳转按钮
+
+- (void)infoButtonClicked:(UIButton *)sender{
+//    [self.navigationController pushViewController:_ivc animated:YES];
+        [self.navigationController presentViewController:_naivc animated:YES completion:^{
+    }];
 }
 
 #pragma mark - 不允许横屏
@@ -251,8 +259,9 @@
  sqlite3_exec(db,sql,0,0,&zErrMsg);
 
  */
+#pragma mark - 跳转到添加用户界面
 - (void)insertNewObject:(id)sender {
-    [self presentViewController:_auivc animated:YES completion:^{
+    [self presentViewController:_aunaivc animated:YES completion:^{
     }];
 }
 

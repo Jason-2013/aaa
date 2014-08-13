@@ -48,17 +48,26 @@
 
 @implementation AddUserInfoViewController
 @synthesize dataPicker,userNameTextField;
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    userNameTextField.text = @"";
+    birthdayDateString = nil;
+    [_tableView reloadData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 64, 320, 0.5)];
-    //    titleLabel.backgroundColor = [UIColor colorWithRed:20 green:20 blue:20 alpha:0.6];
-    titleLabel.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview:titleLabel];
+    self.title = @"添加用户";
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveButtonClicked:)];
+    self.navigationItem.rightBarButtonItem = saveButton;
+    UIBarButtonItem *cancleButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancleButtonClicked:)];
+    self.navigationItem.leftBarButtonItem = cancleButton;
+//    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, 320, 0.5)];
+//    //    titleLabel.backgroundColor = [UIColor colorWithRed:20 green:20 blue:20 alpha:0.6];
+//    titleLabel.backgroundColor = [UIColor lightGrayColor];
+//    [self.view addSubview:titleLabel];
+//    self.view.backgroundColor = [UIColor whiteColor];
     
-    self.view.backgroundColor = [UIColor whiteColor];
-    
- 
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 170, 320, 40)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -66,13 +75,8 @@
     
     userNameTextField.delegate = self;
     
-    userNameTextField.text = nil;
-    birthdayDateString = nil;
-    
     [self openOrCreatDatabase];
     [self searchUserInfo];
-    
-    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -232,10 +236,16 @@
 #pragma mark - Button clicked cancle or save
 
 - (IBAction)saveButtonClicked:(id)sender {
-
-    if ( userNameTextField.text == nil || birthdayDateString == nil) {
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您输入的信息不完整，请重新输入！" message: birthdayDateString delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil, nil];
+    if ( [userNameTextField.text  isEqual: @""] || birthdayDateString == nil) {
+        NSString *message = [[NSString alloc]init];
+        if ([userNameTextField.text  isEqual: @""] && birthdayDateString == nil) {
+            message = @"您没有输入任何信息！";
+        }else if (birthdayDateString == nil){
+            message = @"您没有输入生日，请选择生日后点击！";
+        }else {
+            message = @"您没有输入用户名！";
+       }
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:message message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil, nil];
         [alert show];
     } else {
         [self openOrCreatDatabase];

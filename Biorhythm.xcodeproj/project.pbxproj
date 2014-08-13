@@ -19,9 +19,9 @@
 		696052C51981C44C00793F70 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 696052C41981C44C00793F70 /* Images.xcassets */; };
 		696052D11981C44C00793F70 /* BiorhtthmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 696052D01981C44C00793F70 /* BiorhtthmTests.m */; };
 		696052DB1981C76000793F70 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 696052DA1981C76000793F70 /* libsqlite3.dylib */; };
-		696052DF1981C88000793F70 /* AddUserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 696052DD1981C88000793F70 /* AddUserInfoViewController.xib */; };
 		696052E01981C88000793F70 /* AddUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 696052DE1981C88000793F70 /* AddUserInfoViewController.m */; };
 		69B1D21C199B97EC00E6AC30 /* Document.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 69B1D21B199B97EC00E6AC30 /* Document.pdf */; };
+		69D37E71199C2FD400B49087 /* AddUserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D37E70199C2FD400B49087 /* AddUserInfoViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,9 +57,9 @@
 		696052D01981C44C00793F70 /* BiorhtthmTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BiorhtthmTests.m; sourceTree = "<group>"; };
 		696052DA1981C76000793F70 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		696052DC1981C88000793F70 /* AddUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddUserInfoViewController.h; sourceTree = "<group>"; };
-		696052DD1981C88000793F70 /* AddUserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddUserInfoViewController.xib; sourceTree = "<group>"; };
 		696052DE1981C88000793F70 /* AddUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddUserInfoViewController.m; sourceTree = "<group>"; };
 		69B1D21B199B97EC00E6AC30 /* Document.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Document.pdf; sourceTree = "<group>"; };
+		69D37E70199C2FD400B49087 /* AddUserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddUserInfoViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,7 +113,7 @@
 				692DFB2D19838BA400F97AF5 /* DetailViewController.xib */,
 				696052DC1981C88000793F70 /* AddUserInfoViewController.h */,
 				696052DE1981C88000793F70 /* AddUserInfoViewController.m */,
-				696052DD1981C88000793F70 /* AddUserInfoViewController.xib */,
+				69D37E70199C2FD400B49087 /* AddUserInfoViewController.xib */,
 				69166874198916D2001FA58C /* InfoViewController.h */,
 				69166875198916D2001FA58C /* InfoViewController.m */,
 				694D3E11199AC96F002861A0 /* PDFView.h */,
@@ -234,10 +234,10 @@
 			files = (
 				696052C31981C44C00793F70 /* Main.storyboard in Resources */,
 				696052C51981C44C00793F70 /* Images.xcassets in Resources */,
-				696052DF1981C88000793F70 /* AddUserInfoViewController.xib in Resources */,
 				69166878198916D2001FA58C /* InfoViewController.xib in Resources */,
 				692DFB2F19838BA400F97AF5 /* DetailViewController.xib in Resources */,
 				69B1D21C199B97EC00E6AC30 /* Document.pdf in Resources */,
+				69D37E71199C2FD400B49087 /* AddUserInfoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
