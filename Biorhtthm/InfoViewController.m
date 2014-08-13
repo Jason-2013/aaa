@@ -29,7 +29,7 @@
     [self.view addSubview:button];
     
     
-    CGRect frame = CGRectMake(0, 45, 320, 500);
+    CGRect frame = CGRectMake(0, 45, 320, 523);
     PDFView *pdfView = [[PDFView alloc]initWithFrame:frame];
     pdfView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:pdfView];
