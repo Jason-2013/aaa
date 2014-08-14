@@ -29,6 +29,7 @@
     int age;
     int totalDays;
     NSMutableArray *_totalDaysArray;
+    NSMutableArray *_deleteArray;
     
     int pValue;
     NSMutableArray *_pValueArray;
@@ -86,6 +87,7 @@
     _pValueArray = [[NSMutableArray alloc]initWithCapacity:0];
     _iValueArray = [[NSMutableArray alloc]initWithCapacity:0];
     _mValueArray = [[NSMutableArray alloc]initWithCapacity:0];
+    _deleteArray = [[NSMutableArray alloc]initWithCapacity:0];
     
     _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _tableView.delegate = self;
@@ -124,8 +126,8 @@
     NSString *documents = [paths objectAtIndex:0];
     NSString *database_path = [documents stringByAppendingPathComponent:DBNAME];
     
-    if (sqlite3_open([database_path UTF8String], &atabase) != SQLITE_OK) {
-        sqlite3_close(atabase);
+    if (sqlite3_open([database_path UTF8String], &database) != SQLITE_OK) {
+        sqlite3_close(database);
         NSLog(@"数据库打开失败");
     }
     //创建数据表PERSONINFO的语句
@@ -136,8 +138,8 @@
 -(void)execSql:(NSString *)sql
 {
     char *err;
-    if (sqlite3_exec(atabase, [sql UTF8String], NULL, NULL, &err) != SQLITE_OK) {
-        sqlite3_close(atabase);
+    if (sqlite3_exec(database, [sql UTF8String], NULL, NULL, &err) != SQLITE_OK) {
+        sqlite3_close(database);
         NSLog(@"数据库操作数据失败!");
     }
 }
@@ -148,7 +150,7 @@
     sqlite3_stmt * statement;
     char *name;
     
-    if (sqlite3_prepare_v2(atabase, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
+    if (sqlite3_prepare_v2(database, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
         while (sqlite3_step(statement) == SQLITE_ROW) {
             name = (char*)sqlite3_column_text(statement, 1);
             nsNameStr = [[NSString alloc]initWithUTF8String:name];
@@ -192,35 +194,30 @@
 //    NSLog(@"_mValueArray%@",_mValueArray);
     NSLog(@"用户数量为 %d",_userNameArray.count);
     [_tableView reloadData];
-    sqlite3_close(atabase);
+    sqlite3_close(database);
 }
 
--(void)deleteAllUserInfo{
-    const char *deleteAllSql="delete from USERINFORM where 1>0";
-    char *err;
-    if(sqlite3_exec(atabase, deleteAllSql, NULL, NULL, &err)==SQLITE_OK){
-        NSLog(@"删除所有数据成功");
-    }
-    else NSLog(@"error !! 删除失败！");
-}
-- (void) deleteTestList{
-    
-//    [self openOrCreatDatabase];
-//    [self searchUserInfo];
-    
+//-(void)deleteAllUserInfo{
+//    const char *deleteAllSql="delete from USERINFORM where 1>0";
+//    char *err;
+//    if(sqlite3_exec(database, deleteAllSql, NULL, NULL, &err)==SQLITE_OK){
+//        NSLog(@"删除所有数据成功");
+//    }
+//    else NSLog(@"error !! 删除失败！");
+//}
+- (void) deleteUserInformation{
         sqlite3_stmt *statement;
         //组织SQL语句
-        static char *sql = "delete from testTable  where testID = ? and testValue = ? and testName = ?";
+        static char *sql = "delete from USERINFORM  where name = ? and age = ?";
         //将SQL语句放入sqlite3_stmt中
         int success = sqlite3_prepare_v2(database, sql, -1, &statement, NULL);
         if (success != SQLITE_OK) {
             NSLog(@"Error: failed to delete:testTable");
             sqlite3_close(database);
-        
+        }
         //这里的数字1，2，3代表第几个问号。这里只有1个问号，这是一个相对比较简单的数据库操作，真正的项目中会远远比这个复杂
-        sqlite3_bind_int(statement, 1, deletList.sqlID);
-        sqlite3_bind_text(statement, 2, [deletList.sqlText UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_text(statement, 3, [deletList.sqlname UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 1, [[_deleteArray objectAtIndex:0] UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 2, [[_deleteArray objectAtIndex:1] UTF8String], -1, SQLITE_TRANSIENT);
         //执行SQL语句。这里是更新数据库
         success = sqlite3_step(statement);
         //释放statement
@@ -231,70 +228,12 @@
             NSLog(@"Error: failed to delete the database with message.");
             //关闭数据库
             sqlite3_close(database);
-            return NO;
         }
         //执行成功后依然要关闭数据库
+        NSLog(@"Delete user information success!");
         sqlite3_close(database);
-        return YES;
-    }
-    return NO;
-    
-}
--(void)deleteOneUserInfo{
-    
-    
-    
-    NSString *sqlQuery = @"SELECT * FROM USERINFORM";
-    sqlite3_stmt * statement;
-    char *name;
-    
-    if (sqlite3_prepare_v2(atabase, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
-        while (sqlite3_step(statement) == SQLITE_ROW) {
-            name = (char*)sqlite3_column_text(statement, 1);
-            nsNameStr = [[NSString alloc]initWithUTF8String:name];
-            age = sqlite3_column_int(statement, 2);
-            
-            char *totalDaysChar = (char*)sqlite3_column_text(statement, 3);
-            char *pValueChar = (char*)sqlite3_column_text(statement, 4);
-            char *iValueChar = (char*)sqlite3_column_text(statement, 5);
-            char *mValueChar = (char*)sqlite3_column_text(statement, 6);
-            NSString *nsTotalDays = [[NSString alloc]initWithUTF8String:totalDaysChar];
-            NSString *nsPValue = [[NSString alloc]initWithUTF8String:pValueChar];
-            NSString *nsIValue = [[NSString alloc]initWithUTF8String:iValueChar];
-            NSString *nsMValue = [[NSString alloc]initWithUTF8String:mValueChar];
-            
-            NSLog(@"要删除的数据为：name:%@  age:%d, totaldays:%@, pValue:%@, iValue:%@, mValue:%@",nsNameStr,age, nsTotalDays, nsPValue, nsIValue, nsMValue);
-            
-            
-            NSString *deleteOneUserInfo = [[NSString alloc] initWithFormat:@"delete from userInfor where name = %@ and age = %d and totaldays = %@ and pValue = %@ and iValue = %@ and mValue = %@",nsNameStr,age, nsTotalDays, nsPValue, nsIValue, nsMValue];
-            char *err;
-            if(sqlite3_exec(atabase, [deleteOneUserInfo UTF8String], NULL, NULL, &err)==SQLITE_OK){
-                NSLog(@"删除个人数据成功");
-            }
-            else NSLog(@"error !! 删除个人数据失败！");
-            NSLog(@"%s",err);
-            
-        }
-    }
-    sqlite3_close(atabase);
-
-    //    NSLog(@"_userInfoDictionary %@",_userInfoDictionary);
-    //    NSLog(@"_userNameArray %@",_userNameArray);
-    //    NSLog(@"_totalDaysArray%@",_totalDaysArray);
-    //    NSLog(@"_pValueArray%@",_pValueArray);
-    //    NSLog(@"_iValueArray%@",_iValueArray);
-    //    NSLog(@"_mValueArray%@",_mValueArray);
-//    NSLog(@"用户数量为 %d",_userNameArray.count);
-//    [_tableView reloadData];
-
 }
 
-/*
- 
- sql="DELETE FROM SensorData WHERE SensorID=11";//把北京所对应的那一行数据删除掉
- sqlite3_exec(db,sql,0,0,&zErrMsg);
-
- */
 #pragma mark - 跳转到添加用户界面
 - (void)insertNewObject:(id)sender {
     [self presentViewController:_aunaivc animated:YES completion:^{
@@ -411,14 +350,19 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [_deleteArray addObject:[_userNameArray objectAtIndex:indexPath.row]];
+        [_deleteArray addObject:[_userAgeArray objectAtIndex:indexPath.row]];
+        
         [self->_userNameArray removeObjectAtIndex:indexPath.row];
         [self->_userAgeArray removeObjectAtIndex:indexPath.row];
-        [self deleteAllUserInfo];
-//        [self deleteOneUserInfo];
+        
+        [self deleteUserInformation];
+//        [self deleteAllUserInfo];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        NSLog(@"%@",_userNameArray);
-        NSLog(@"%@",_userAgeArray);
+        NSLog(@"_userNameArray%@",_userNameArray);
+        NSLog(@"_userAgeArray%@",_userAgeArray);
+        NSLog(@"_deleteArray%@",_deleteArray);
         [tableView reloadData];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
