@@ -128,7 +128,7 @@
     
     if (sqlite3_open([database_path UTF8String], &database) != SQLITE_OK) {
         sqlite3_close(database);
-        NSLog(@"数据库打开失败");
+        NSLog(@"ViewController: 数据库打开失败");
     }
     //创建数据表PERSONINFO的语句
     NSString *sqlCreateTable2 = @"CREATE TABLE IF NOT EXISTS USERINFORM (ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, totalDays TEXT, pValue TEXT, iValue TEXT, mValue TEXT,userbirthday TEXT)";
@@ -140,7 +140,7 @@
     char *err;
     if (sqlite3_exec(database, [sql UTF8String], NULL, NULL, &err) != SQLITE_OK) {
         sqlite3_close(database);
-        NSLog(@"数据库操作数据失败!");
+        NSLog(@"ViewController: 数据库操作数据失败!");
     }
 }
 //查询数据库并打印数据
@@ -167,7 +167,7 @@
             NSString *nsMValue = [[NSString alloc]initWithUTF8String:mValueChar];
             NSString *nsBirthday = [[NSString alloc]initWithUTF8String:birthday];
             
-            NSLog(@"查询得到的数据库中的数据为：name:%@  age:%d, totaldays:%@, pValue:%@, iValue:%@, mValue:%@, birthday:%@",nsNameStr,age, nsTotalDays, nsPValue, nsIValue, nsMValue,nsBirthday);
+            NSLog(@"ViewController: 查询得到的数据库中的数据为：name:%@  age:%d, totaldays:%@, pValue:%@, iValue:%@, mValue:%@, birthday:%@",nsNameStr,age, nsTotalDays, nsPValue, nsIValue, nsMValue,nsBirthday);
             
             [_userInfoDictionary setObject:nsNameStr forKey:@"name"];
             NSString *nsAge = [NSString stringWithFormat:@"%d",age];
@@ -192,7 +192,7 @@
 //    NSLog(@"_pValueArray%@",_pValueArray);
 //    NSLog(@"_iValueArray%@",_iValueArray);
 //    NSLog(@"_mValueArray%@",_mValueArray);
-    NSLog(@"用户数量为 %d",_userNameArray.count);
+    NSLog(@"ViewController: 用户数量为 %d",_userNameArray.count);
     [_tableView reloadData];
     sqlite3_close(database);
 }
@@ -212,7 +212,7 @@
         //将SQL语句放入sqlite3_stmt中
         int success = sqlite3_prepare_v2(database, sql, -1, &statement, NULL);
         if (success != SQLITE_OK) {
-            NSLog(@"Error: failed to delete:testTable");
+            NSLog(@"ViewController: Error: failed to delete:testTable");
             sqlite3_close(database);
         }
         //这里的数字1，2，3代表第几个问号。这里只有1个问号，这是一个相对比较简单的数据库操作，真正的项目中会远远比这个复杂
@@ -225,12 +225,12 @@
         
         //如果执行失败
         if (success == SQLITE_ERROR) {
-            NSLog(@"Error: failed to delete the database with message.");
+            NSLog(@"ViewController: Error: failed to delete the database with message.");
             //关闭数据库
             sqlite3_close(database);
         }
         //执行成功后依然要关闭数据库
-        NSLog(@"Delete user information success!");
+        NSLog(@"ViewController: Delete user information success!");
         sqlite3_close(database);
 }
 
@@ -258,9 +258,12 @@
     NSString *cellID = [NSString stringWithFormat:@"cellid%d%d",[indexPath section],[indexPath row]];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    cell = nil;// 解决重用问题，简单暴力！！ 
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
+    
+    
     cell.textLabel.text = @"";
     
     UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 30, 113, 40)];
@@ -360,12 +363,12 @@
 //        [self deleteAllUserInfo];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        NSLog(@"_userNameArray%@",_userNameArray);
-        NSLog(@"_userAgeArray%@",_userAgeArray);
-        NSLog(@"_deleteArray%@",_deleteArray);
+        NSLog(@"ViewController:_deleteArray%@",_deleteArray);
+        NSLog(@"ViewController:_userNameArray%@",_userNameArray);
+        NSLog(@"ViewController:_userAgeArray%@",_userAgeArray);
         [tableView reloadData];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view. 
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         
     }
 
@@ -376,7 +379,7 @@
 //        NSDate *object = self.objects[indexPath.row];
 //        self.detailViewController.detailItem = object;
     }
-    NSLog(@"%ld indexPath choosed",(long)indexPath.row);
+    NSLog(@"ViewController: %ld indexPath choosed",(long)indexPath.row);
     DetailViewController *dvc = [[DetailViewController alloc]init];
     dvc.userName = [_userNameArray objectAtIndex:indexPath.row];
     dvc.age = [[_userAgeArray objectAtIndex:indexPath.row]intValue];
