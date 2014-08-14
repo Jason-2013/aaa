@@ -124,8 +124,8 @@
     NSString *documents = [paths objectAtIndex:0];
     NSString *database_path = [documents stringByAppendingPathComponent:DBNAME];
     
-    if (sqlite3_open([database_path UTF8String], &database) != SQLITE_OK) {
-        sqlite3_close(database);
+    if (sqlite3_open([database_path UTF8String], &atabase) != SQLITE_OK) {
+        sqlite3_close(atabase);
         NSLog(@"数据库打开失败");
     }
     //创建数据表PERSONINFO的语句
@@ -136,8 +136,8 @@
 -(void)execSql:(NSString *)sql
 {
     char *err;
-    if (sqlite3_exec(database, [sql UTF8String], NULL, NULL, &err) != SQLITE_OK) {
-        sqlite3_close(database);
+    if (sqlite3_exec(atabase, [sql UTF8String], NULL, NULL, &err) != SQLITE_OK) {
+        sqlite3_close(atabase);
         NSLog(@"数据库操作数据失败!");
     }
 }
@@ -148,7 +148,7 @@
     sqlite3_stmt * statement;
     char *name;
     
-    if (sqlite3_prepare_v2(database, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
+    if (sqlite3_prepare_v2(atabase, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
         while (sqlite3_step(statement) == SQLITE_ROW) {
             name = (char*)sqlite3_column_text(statement, 1);
             nsNameStr = [[NSString alloc]initWithUTF8String:name];
@@ -192,18 +192,54 @@
 //    NSLog(@"_mValueArray%@",_mValueArray);
     NSLog(@"用户数量为 %d",_userNameArray.count);
     [_tableView reloadData];
-    sqlite3_close(database);
+    sqlite3_close(atabase);
 }
 
 -(void)deleteAllUserInfo{
     const char *deleteAllSql="delete from USERINFORM where 1>0";
     char *err;
-    if(sqlite3_exec(database, deleteAllSql, NULL, NULL, &err)==SQLITE_OK){
+    if(sqlite3_exec(atabase, deleteAllSql, NULL, NULL, &err)==SQLITE_OK){
         NSLog(@"删除所有数据成功");
     }
     else NSLog(@"error !! 删除失败！");
 }
-
+- (void) deleteTestList{
+    
+//    [self openOrCreatDatabase];
+//    [self searchUserInfo];
+    
+        sqlite3_stmt *statement;
+        //组织SQL语句
+        static char *sql = "delete from testTable  where testID = ? and testValue = ? and testName = ?";
+        //将SQL语句放入sqlite3_stmt中
+        int success = sqlite3_prepare_v2(database, sql, -1, &statement, NULL);
+        if (success != SQLITE_OK) {
+            NSLog(@"Error: failed to delete:testTable");
+            sqlite3_close(database);
+        
+        //这里的数字1，2，3代表第几个问号。这里只有1个问号，这是一个相对比较简单的数据库操作，真正的项目中会远远比这个复杂
+        sqlite3_bind_int(statement, 1, deletList.sqlID);
+        sqlite3_bind_text(statement, 2, [deletList.sqlText UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(statement, 3, [deletList.sqlname UTF8String], -1, SQLITE_TRANSIENT);
+        //执行SQL语句。这里是更新数据库
+        success = sqlite3_step(statement);
+        //释放statement
+        sqlite3_finalize(statement);
+        
+        //如果执行失败
+        if (success == SQLITE_ERROR) {
+            NSLog(@"Error: failed to delete the database with message.");
+            //关闭数据库
+            sqlite3_close(database);
+            return NO;
+        }
+        //执行成功后依然要关闭数据库
+        sqlite3_close(database);
+        return YES;
+    }
+    return NO;
+    
+}
 -(void)deleteOneUserInfo{
     
     
@@ -212,7 +248,7 @@
     sqlite3_stmt * statement;
     char *name;
     
-    if (sqlite3_prepare_v2(database, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
+    if (sqlite3_prepare_v2(atabase, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
         while (sqlite3_step(statement) == SQLITE_ROW) {
             name = (char*)sqlite3_column_text(statement, 1);
             nsNameStr = [[NSString alloc]initWithUTF8String:name];
@@ -232,7 +268,7 @@
             
             NSString *deleteOneUserInfo = [[NSString alloc] initWithFormat:@"delete from userInfor where name = %@ and age = %d and totaldays = %@ and pValue = %@ and iValue = %@ and mValue = %@",nsNameStr,age, nsTotalDays, nsPValue, nsIValue, nsMValue];
             char *err;
-            if(sqlite3_exec(database, [deleteOneUserInfo UTF8String], NULL, NULL, &err)==SQLITE_OK){
+            if(sqlite3_exec(atabase, [deleteOneUserInfo UTF8String], NULL, NULL, &err)==SQLITE_OK){
                 NSLog(@"删除个人数据成功");
             }
             else NSLog(@"error !! 删除个人数据失败！");
@@ -240,7 +276,7 @@
             
         }
     }
-    sqlite3_close(database);
+    sqlite3_close(atabase);
 
     //    NSLog(@"_userInfoDictionary %@",_userInfoDictionary);
     //    NSLog(@"_userNameArray %@",_userNameArray);
