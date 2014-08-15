@@ -235,7 +235,10 @@
 
 #pragma mark - Button clicked cancle or save
 
-- (IBAction)saveButtonClicked:(id)sender {
+- (void)saveButtonClicked:(id)sender {
+ 
+    [userNameTextField resignFirstResponder];
+
     if ( [userNameTextField.text  isEqual: @""] || birthdayDateString == nil) {
         NSString *message = [[NSString alloc]init];
         if ([userNameTextField.text  isEqual: @""] && birthdayDateString == nil) {
@@ -256,7 +259,7 @@
     }
 }
 
-- (IBAction)cancleButtonClicked:(id)sender {
+- (void)cancleButtonClicked:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
         userNameTextField.text = nil;
         birthdayDateString = nil;
