@@ -260,6 +260,7 @@
 }
 
 - (void)cancleButtonClicked:(id)sender {
+    [userNameTextField resignFirstResponder];
     [self dismissViewControllerAnimated:YES completion:^{
         userNameTextField.text = nil;
         birthdayDateString = nil;
@@ -293,6 +294,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [userNameTextField resignFirstResponder];
+
     NSDate *selectedYear = [dataPicker date];
     NSDateFormatter *dateFormatterYear = [[NSDateFormatter alloc] init];
     [dateFormatterYear setDateFormat:@"yyyy"];

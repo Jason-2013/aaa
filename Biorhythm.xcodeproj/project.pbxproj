@@ -12,6 +12,7 @@
 		692DFB2E19838BA400F97AF5 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 692DFB2C19838BA400F97AF5 /* DetailViewController.m */; };
 		692DFB2F19838BA400F97AF5 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 692DFB2D19838BA400F97AF5 /* DetailViewController.xib */; };
 		694D3E13199AC96F002861A0 /* PDFView.m in Sources */ = {isa = PBXBuildFile; fileRef = 694D3E12199AC96F002861A0 /* PDFView.m */; };
+		695C3306199EBB1900797330 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 695C3305199EBB1900797330 /* image.png */; };
 		696052BA1981C44B00793F70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 696052B91981C44B00793F70 /* main.m */; };
 		696052BD1981C44B00793F70 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 696052BC1981C44B00793F70 /* AppDelegate.m */; };
 		696052C01981C44B00793F70 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 696052BF1981C44B00793F70 /* ViewController.m */; };
@@ -43,6 +44,7 @@
 		692DFB2D19838BA400F97AF5 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		694D3E11199AC96F002861A0 /* PDFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFView.h; sourceTree = "<group>"; };
 		694D3E12199AC96F002861A0 /* PDFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFView.m; sourceTree = "<group>"; };
+		695C3305199EBB1900797330 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		696052B41981C44B00793F70 /* Biorhythm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Biorhythm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		696052B81981C44B00793F70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		696052B91981C44B00793F70 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 		696052B61981C44B00793F70 /* Biorhtthm */ = {
 			isa = PBXGroup;
 			children = (
+				695C3305199EBB1900797330 /* image.png */,
 				69B1D21B199B97EC00E6AC30 /* Document.pdf */,
 				696052BB1981C44B00793F70 /* AppDelegate.h */,
 				696052BC1981C44B00793F70 /* AppDelegate.m */,
@@ -236,6 +239,7 @@
 				696052C51981C44C00793F70 /* Images.xcassets in Resources */,
 				69166878198916D2001FA58C /* InfoViewController.xib in Resources */,
 				692DFB2F19838BA400F97AF5 /* DetailViewController.xib in Resources */,
+				695C3306199EBB1900797330 /* image.png in Resources */,
 				69B1D21C199B97EC00E6AC30 /* Document.pdf in Resources */,
 				69D37E71199C2FD400B49087 /* AddUserInfoViewController.xib in Resources */,
 			);

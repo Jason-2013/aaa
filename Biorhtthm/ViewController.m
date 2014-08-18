@@ -37,6 +37,17 @@
     NSMutableArray *_iValueArray;
     int mValue;
     NSMutableArray *_mValueArray;
+    
+    // 计算使用
+    int currentYearMinsBirthYear;
+    int currentDayMinsBirthDay;
+    int currentYear;
+    int currentMonth;
+    int currentDay;
+    int BirthYear;
+    int BirthMonth;
+    int BirthDay;
+
 }
 @end
 
@@ -60,8 +71,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.title = @"生物节律";    
-//    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.title = @"生物节律";
+//    self.view.backgroundColor = [UIColor blackColor];
     
     UIBarButtonItem *leftBBI = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(infoButtonClicked:)];
     self.navigationItem.leftBarButtonItem = leftBBI;
@@ -92,9 +103,74 @@
     _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+//    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"image.png"]];
+//    _tableView.backgroundView = imageView;
     [self.view addSubview:_tableView];
-  
     [self openOrCreatDatabase];
+    
+ 
+}
+- (void) calculateBiorhythmValue{
+    
+    NSDate *selectedYear = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy"];
+    currentYear = [[dateFormatter stringFromDate:selectedYear] intValue];
+//    NSLog(@"current year:%d",currentYear);
+    
+    NSDate *selectedMonth = [NSDate date];
+    NSDateFormatter *dateFormatterMonth = [[NSDateFormatter alloc] init];
+    [dateFormatterMonth setDateFormat:@"MM"];
+    currentMonth = [[dateFormatterMonth stringFromDate:selectedMonth] intValue];
+//    NSLog(@"current month:%d",currentMonth);
+    
+    NSDate *selectedDay = [NSDate date];
+    NSDateFormatter *dateFormatterDay = [[NSDateFormatter alloc] init];
+    [dateFormatterDay setDateFormat:@"dd"];
+    currentDay = [[dateFormatterDay stringFromDate:selectedDay] intValue];
+//    NSLog(@"current day:%d",currentDay);
+    
+    currentYearMinsBirthYear = currentYear - BirthYear;
+    currentDayMinsBirthDay = [self calculateDaysOfMonth:currentMonth days:currentDay] - [self calculateDaysOfMonth:BirthMonth days:BirthDay];
+    totalDays = 365.25*(double)currentYearMinsBirthYear + currentDayMinsBirthDay;
+    
+    
+    
+//    NSLog(@"birth year:%d",BirthYear);
+
+    pValue = (int)100*sin((((360*totalDays)/23)*3.14)/180);
+    iValue = (int)100*sin((((360*totalDays)/33)*3.14)/180);
+    mValue = (int)100*sin((((360*totalDays)/28)*3.14)/180);
+    NSLog(@"totalDays %d",totalDays);
+}
+
+- (int)calculateDaysOfMonth:(int)month days:(int)day{
+    switch (month)
+    {
+        case 12:
+            day += 30;
+        case 11:
+            day += 31;
+        case 10:
+            day += 30;
+        case 9:
+            day += 31;
+        case 8:
+            day += 31;
+        case 7:
+            day += 30;
+        case 6:
+            day += 31;
+        case 5:
+            day += 30;
+        case 4:
+            day += 31;
+        case 3:
+            day += 28;
+        case 2:
+            day += 31;
+    }
+    return day;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -105,7 +181,6 @@
 #pragma mark - 跳转按钮
 
 - (void)infoButtonClicked:(UIButton *)sender{
-//    [self.navigationController pushViewController:_ivc animated:YES];
         [self.navigationController presentViewController:_naivc animated:YES completion:^{
     }];
 }
@@ -167,31 +242,34 @@
             NSString *nsMValue = [[NSString alloc]initWithUTF8String:mValueChar];
             NSString *nsBirthday = [[NSString alloc]initWithUTF8String:birthday];
             
-            NSLog(@"ViewController: 查询得到的数据库中的数据为：name:%@  age:%d, totaldays:%@, pValue:%@, iValue:%@, mValue:%@, birthday:%@",nsNameStr,age, nsTotalDays, nsPValue, nsIValue, nsMValue,nsBirthday);
+            BirthYear = [nsBirthday intValue];
+            NSArray *birthdayArray = [nsBirthday componentsSeparatedByString:@"-"];
+            BirthYear = [[birthdayArray objectAtIndex:0]intValue];
+            BirthMonth = [[birthdayArray objectAtIndex:1]intValue];
+            BirthDay = [[birthdayArray objectAtIndex:2]intValue];
             
+            NSLog(@"birthYear from nsBirthday %d,birth month %d, birth day %d",BirthYear, BirthMonth, BirthDay);
+            
+            NSLog(@"ViewController: 查询得到的数据库中的数据为：name:%@  age:%d, totaldays:%@, pValue:%@, iValue:%@, mValue:%@, birthday:%@",nsNameStr,age, nsTotalDays, nsPValue, nsIValue, nsMValue,nsBirthday);
+            [self calculateBiorhythmValue];
+//            NSLog(@" calcu totalDays %d",totalDays);
+
             [_userInfoDictionary setObject:nsNameStr forKey:@"name"];
             NSString *nsAge = [NSString stringWithFormat:@"%d",age];
             [_userInfoDictionary setObject:nsAge forKey:@"age"];
-            [_userInfoDictionary setObject:nsTotalDays forKey:@"totaldays"];
-            [_userInfoDictionary setObject:nsPValue forKey:@"pvalue"];
-            [_userInfoDictionary setObject:nsIValue forKey:@"ivalue"];
-            [_userInfoDictionary setObject:nsMValue forKey:@"mvlaue"];
+//            [_userInfoDictionary setObject:nsTotalDays forKey:@"totaldays"];
+//            [_userInfoDictionary setObject:nsPValue forKey:@"pvalue"];
+//            [_userInfoDictionary setObject:nsIValue forKey:@"ivalue"];
+//            [_userInfoDictionary setObject:nsMValue forKey:@"mvlaue"];
             
             [_userAgeArray addObject:[_userInfoDictionary objectForKey:@"age"]];
             [_userNameArray addObject:[_userInfoDictionary objectForKey:@"name"]];
-            [_totalDaysArray addObject:[_userInfoDictionary objectForKey:@"totaldays"]];
-            [_pValueArray addObject:[_userInfoDictionary objectForKey:@"pvalue"]];
-            [_iValueArray addObject:[_userInfoDictionary objectForKey:@"ivalue"]];
-            [_mValueArray addObject:[_userInfoDictionary objectForKey:@"mvlaue"]];
+            [_totalDaysArray addObject:[NSString stringWithFormat:@"%d",totalDays]];
+            [_pValueArray addObject:[NSString stringWithFormat:@"%d",pValue]];
+            [_iValueArray addObject:[NSString stringWithFormat:@"%d",iValue]];
+            [_mValueArray addObject:[NSString stringWithFormat:@"%d",mValue]];
         }
     }
-    
-//    NSLog(@"_userInfoDictionary %@",_userInfoDictionary);
-//    NSLog(@"_userNameArray %@",_userNameArray);
-//    NSLog(@"_totalDaysArray%@",_totalDaysArray);
-//    NSLog(@"_pValueArray%@",_pValueArray);
-//    NSLog(@"_iValueArray%@",_iValueArray);
-//    NSLog(@"_mValueArray%@",_mValueArray);
     NSLog(@"ViewController: 用户数量为 %d",_userNameArray.count);
     [_tableView reloadData];
     sqlite3_close(database);
@@ -244,7 +322,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 150;
+    return 125;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -262,11 +340,11 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    
-    
+    cell.backgroundColor = [UIColor clearColor];//cell 设置为透明
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = @"";
     
-    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 30, 113, 40)];
+    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 113, 40)];
     nameLabel.text = @"";
     nameLabel.text = [NSString stringWithFormat:@"姓名: %@",[_userNameArray objectAtIndex:indexPath.row]];
     [cell addSubview:nameLabel];
@@ -276,28 +354,28 @@
     mValue = [[_mValueArray objectAtIndex:indexPath.row] intValue];
     totalDays = [[_totalDaysArray objectAtIndex:indexPath.row] intValue];
     
-    UILabel *ageLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 65, 113, 40)];
+    UILabel *ageLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 45, 113, 40)];
     ageLabel.text = @"";
     ageLabel.text = [NSString stringWithFormat:@"年龄: %@ 岁",[_userAgeArray objectAtIndex:indexPath.row]];
     [cell addSubview:ageLabel];
-    UILabel *allDaysLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 100, 113, 40)];
+    UILabel *allDaysLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 80, 113, 40)];
     allDaysLabel.text = @"";
     allDaysLabel.text = [NSString stringWithFormat:@"总计: %d天",totalDays];
     [cell addSubview:allDaysLabel];
         
-    UILabel *pLabel = [[UILabel alloc]initWithFrame:CGRectMake(125, 30, 40, 40)];
+    UILabel *pLabel = [[UILabel alloc]initWithFrame:CGRectMake(115, 10, 40, 40)];
     pLabel.text = @"体力:";
     [cell addSubview:pLabel];
     
-    UILabel *iLabel = [[UILabel alloc]initWithFrame:CGRectMake(125, 65, 40, 40)];
+    UILabel *iLabel = [[UILabel alloc]initWithFrame:CGRectMake(115, 45, 40, 40)];
     iLabel.text = @"智力:";
     [cell addSubview:iLabel];
     
-    UILabel *mLabel = [[UILabel alloc]initWithFrame:CGRectMake(125, 100, 40, 40)];
+    UILabel *mLabel = [[UILabel alloc]initWithFrame:CGRectMake(115, 80, 40, 40)];
     mLabel.text = @"情绪:";
     [cell addSubview:mLabel];
     
-    UIProgressView *pProgressView = [[UIProgressView alloc]initWithFrame:CGRectMake(175, 50, 80, 40)];
+    UIProgressView *pProgressView = [[UIProgressView alloc]initWithFrame:CGRectMake(160, 30, 80, 40)];
     pProgressView.progressViewStyle = UIProgressViewStyleDefault;
     if (((float)pValue/100) < 0.0) {
         pProgressView.progress =(-(float)pValue/100);
@@ -308,7 +386,7 @@
     }
     [cell addSubview:pProgressView];
 
-    UIProgressView *iProgressView = [[UIProgressView alloc]initWithFrame:CGRectMake(175, 85, 80, 40)];
+    UIProgressView *iProgressView = [[UIProgressView alloc]initWithFrame:CGRectMake(160, 65, 80, 40)];
     iProgressView.progressViewStyle = UIProgressViewStyleDefault;
     iProgressView.progress = (float)iValue/100;
     if (((float)iValue/100) < 0.0) {
@@ -319,7 +397,7 @@
     }
     [cell addSubview:iProgressView];
     
-    UIProgressView *mProgressView = [[UIProgressView alloc]initWithFrame:CGRectMake(175, 120, 80, 40)];
+    UIProgressView *mProgressView = [[UIProgressView alloc]initWithFrame:CGRectMake(160, 100, 80, 40)];
     mProgressView.progressViewStyle = UIProgressViewStyleDefault;
     mProgressView.progress = (float)mValue/100;
     if (((float)mValue/100) < 0.0) {
@@ -330,17 +408,17 @@
     }
     [cell addSubview:mProgressView];
     
-    UILabel *pValueLabel = [[UILabel alloc]initWithFrame:CGRectMake(260, 30, 50, 40)];
+    UILabel *pValueLabel = [[UILabel alloc]initWithFrame:CGRectMake(240, 10, 50, 40)];
     pValueLabel.textAlignment = NSTextAlignmentRight;
     pValueLabel.text = [NSString stringWithFormat:@"%d%%",pValue];
     [cell addSubview:pValueLabel];
     
-    UILabel *iValueLabel = [[UILabel alloc]initWithFrame:CGRectMake(260, 65, 50, 40)];
+    UILabel *iValueLabel = [[UILabel alloc]initWithFrame:CGRectMake(240, 45, 50, 40)];
     iValueLabel.textAlignment = NSTextAlignmentRight;
     iValueLabel.text = [NSString stringWithFormat:@"%d%%",iValue];
     [cell addSubview:iValueLabel];
     
-    UILabel *mValueLabel = [[UILabel alloc]initWithFrame:CGRectMake(260, 100, 50, 40)];
+    UILabel *mValueLabel = [[UILabel alloc]initWithFrame:CGRectMake(240, 80, 50, 40)];
     mValueLabel.textAlignment = NSTextAlignmentRight;
     mValueLabel.text = [NSString stringWithFormat:@"%d%%",mValue];
     [cell addSubview:mValueLabel];
