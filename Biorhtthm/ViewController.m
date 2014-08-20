@@ -141,7 +141,7 @@
     pValue = (int)100*sin((((360*totalDays)/23)*3.14)/180);
     iValue = (int)100*sin((((360*totalDays)/33)*3.14)/180);
     mValue = (int)100*sin((((360*totalDays)/28)*3.14)/180);
-    NSLog(@"totalDays %d",totalDays);
+    NSLog(@"根据当前时间计算的总天数 %d",totalDays);
 }
 
 - (int)calculateDaysOfMonth:(int)month days:(int)day{
@@ -252,20 +252,13 @@
             BirthMonth = [[birthdayArray objectAtIndex:1]intValue];
             BirthDay = [[birthdayArray objectAtIndex:2]intValue];
             
-            NSLog(@"birthYear from nsBirthday %d,birth month %d, birth day %d",BirthYear, BirthMonth, BirthDay);
+//            NSLog(@"birthYear from nsBirthday %d,birth month %d, birth day %d",BirthYear, BirthMonth, BirthDay);
             
-            NSLog(@"ViewController: 查询得到的数据库中的数据为：name:%@  age:%d, totaldays:%@, pValue:%@, iValue:%@, mValue:%@, birthday:%@",nsNameStr,age, nsTotalDays, nsPValue, nsIValue, nsMValue,nsBirthday);
+            NSLog(@"查询数据为：姓名:%@  年龄:%d 总天数:%@ 体力值:%@ 智力值:%@ 情绪值:%@ 生日:%@",nsNameStr,age, nsTotalDays, nsPValue, nsIValue, nsMValue,nsBirthday);
             [self calculateBiorhythmValue];
-//            NSLog(@" calcu totalDays %d",totalDays);
-
             [_userInfoDictionary setObject:nsNameStr forKey:@"name"];
             NSString *nsAge = [NSString stringWithFormat:@"%d",age];
             [_userInfoDictionary setObject:nsAge forKey:@"age"];
-//            [_userInfoDictionary setObject:nsTotalDays forKey:@"totaldays"];
-//            [_userInfoDictionary setObject:nsPValue forKey:@"pvalue"];
-//            [_userInfoDictionary setObject:nsIValue forKey:@"ivalue"];
-//            [_userInfoDictionary setObject:nsMValue forKey:@"mvlaue"];
-            
             [_userAgeArray addObject:[_userInfoDictionary objectForKey:@"age"]];
             [_userNameArray addObject:[_userInfoDictionary objectForKey:@"name"]];
             [_totalDaysArray addObject:[NSString stringWithFormat:@"%d",totalDays]];
@@ -274,7 +267,7 @@
             [_mValueArray addObject:[NSString stringWithFormat:@"%d",mValue]];
         }
     }
-    NSLog(@"ViewController: 用户数量为 %d",_userNameArray.count);
+    NSLog(@"用户数量为 %d",_userNameArray.count);
     [_tableView reloadData];
     sqlite3_close(database);
 }
@@ -289,29 +282,21 @@
 //}
 - (void) deleteUserInformation{
         sqlite3_stmt *statement;
-        //组织SQL语句
         static char *sql = "delete from USERINFORM  where name = ? and age = ?";
-        //将SQL语句放入sqlite3_stmt中
         int success = sqlite3_prepare_v2(database, sql, -1, &statement, NULL);
         if (success != SQLITE_OK) {
             NSLog(@"ViewController: Error: failed to delete:testTable");
             sqlite3_close(database);
         }
-        //这里的数字1，2，3代表第几个问号。这里只有1个问号，这是一个相对比较简单的数据库操作，真正的项目中会远远比这个复杂
         sqlite3_bind_text(statement, 1, [[_deleteArray objectAtIndex:0] UTF8String], -1, SQLITE_TRANSIENT);
         sqlite3_bind_text(statement, 2, [[_deleteArray objectAtIndex:1] UTF8String], -1, SQLITE_TRANSIENT);
-        //执行SQL语句。这里是更新数据库
         success = sqlite3_step(statement);
-        //释放statement
         sqlite3_finalize(statement);
         
-        //如果执行失败
         if (success == SQLITE_ERROR) {
             NSLog(@"ViewController: Error: failed to delete the database with message.");
-            //关闭数据库
             sqlite3_close(database);
         }
-        //执行成功后依然要关闭数据库
         NSLog(@"ViewController: Delete user information success!");
         sqlite3_close(database);
 }
@@ -445,9 +430,9 @@
 //        [self deleteAllUserInfo];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        NSLog(@"ViewController:_deleteArray%@",_deleteArray);
-        NSLog(@"ViewController:_userNameArray%@",_userNameArray);
-        NSLog(@"ViewController:_userAgeArray%@",_userAgeArray);
+//        NSLog(@"ViewController:_deleteArray%@",_deleteArray);
+//        NSLog(@"ViewController:_userNameArray%@",_userNameArray);
+//        NSLog(@"ViewController:_userAgeArray%@",_userAgeArray);
         [tableView reloadData];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
