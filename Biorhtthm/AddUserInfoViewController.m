@@ -54,6 +54,8 @@
     userNameTextField.text = @"";
     birthdayDateString = nil;
 //    dataPicker = nil;
+    self.dataPicker.hidden = YES;
+    isTabSelected = YES;
     [_tableView reloadData];
 }
 - (void)viewDidLoad {
@@ -291,18 +293,20 @@
     cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.text = @" 生日:";
     if (birthdayDateString == nil) {
-        cell.detailTextLabel.text = @"请点击以便选择您的生日！";
-    } else {
+        cell.detailTextLabel.text = @"请点击以便选择您的生日！     ";
+        cell.detailTextLabel.textColor = [UIColor grayColor];
+        cell.detailTextLabel.textAlignment = NSTextAlignmentLeft;
+   } else {
         cell.detailTextLabel.text = birthdayDateString;
+       cell.detailTextLabel.textColor = [UIColor blueColor];
+       cell.detailTextLabel.textAlignment = NSTextAlignmentLeft;
     }
-    cell.detailTextLabel.textColor = [UIColor blueColor];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [userNameTextField resignFirstResponder];
-
     if (isTabSelected == YES) {
         
         
@@ -314,8 +318,6 @@
         self.dataPicker.frame = CGRectMake(0, 245, 320, 260);
         
         [UIView setAnimationDelegate:self];
-        // 动画完毕后调用animationFinished
-//        [UIView setAnimationDidStopSelector:@selector(animationFinished)];
         [UIView commitAnimations];
         
         [self ViewAnimation:self.dataPicker willHidden:NO];
@@ -357,13 +359,8 @@
         self.dataPicker.frame = CGRectMake(0, 245, 320, 260);
         
         [UIView setAnimationDelegate:self];
-        // 动画完毕后调用animationFinished
-//        [UIView setAnimationDidStopSelector:@selector(animationFinished)];
         [UIView commitAnimations];
-        
         [self ViewAnimation:self.dataPicker willHidden:YES];
-        
-        
         
         NSDate *selectedYear = [dataPicker date];
         NSDateFormatter *dateFormatterYear = [[NSDateFormatter alloc] init];
@@ -392,10 +389,6 @@
         isTabSelected = YES;
     }
 }
-
-//-(void)animationFinished{
-//    NSLog(@"动画结束!");
-//}
 
 - (void)ViewAnimation:(UIView*)view willHidden:(BOOL)hidden {
     
