@@ -177,7 +177,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+//-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
+//    //notification是发送通知时传入的字典信息
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"标题" message:notification.alertBody delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//    [alert show];
+//}
 #pragma mark - 跳转按钮
 
 - (void)infoButtonClicked:(UIButton *)sender{

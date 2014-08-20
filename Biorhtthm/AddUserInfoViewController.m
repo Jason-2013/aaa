@@ -43,6 +43,7 @@
     int BirthMonth;
     int BirthDay;
     
+    BOOL isTabSelected;
 }
 @end
 
@@ -52,6 +53,7 @@
     [super viewWillAppear:animated];
     userNameTextField.text = @"";
     birthdayDateString = nil;
+//    dataPicker = nil;
     [_tableView reloadData];
 }
 - (void)viewDidLoad {
@@ -67,6 +69,11 @@
 //    titleLabel.backgroundColor = [UIColor lightGrayColor];
 //    [self.view addSubview:titleLabel];
 //    self.view.backgroundColor = [UIColor whiteColor];
+   
+    self.dataPicker.frame = CGRectMake(0, 480, 320, 260);
+    self.dataPicker.hidden = YES;
+    isTabSelected = YES;
+
     
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 170, 320, 40)];
     _tableView.delegate = self;
@@ -284,7 +291,7 @@
     cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.text = @" 生日:";
     if (birthdayDateString == nil) {
-        cell.detailTextLabel.text = @"选择日期后点击来输入生日！";
+        cell.detailTextLabel.text = @"请点击以便选择您的生日！";
     } else {
         cell.detailTextLabel.text = birthdayDateString;
     }
@@ -296,36 +303,120 @@
 {
     [userNameTextField resignFirstResponder];
 
-    NSDate *selectedYear = [dataPicker date];
-    NSDateFormatter *dateFormatterYear = [[NSDateFormatter alloc] init];
-    [dateFormatterYear setDateFormat:@"yyyy"];
-    BirthYear = [[dateFormatterYear stringFromDate:selectedYear] intValue];
-//    NSLog(@"BirthYear is %d",BirthYear);
-    
-    NSDate *selectedMonth = [dataPicker date];
-    NSDateFormatter *dateFormatterMonth = [[NSDateFormatter alloc] init];
-    [dateFormatterMonth setDateFormat:@"MM"];
-    BirthMonth = [[dateFormatterMonth stringFromDate:selectedMonth] intValue];
-//    NSLog(@"BirthMonth is %d",BirthMonth);
-    
-    NSDate *selectedDay = [dataPicker date];
-    NSDateFormatter *dateFormatterDay = [[NSDateFormatter alloc] init];
-    [dateFormatterDay setDateFormat:@"dd"];
-    BirthDay = [[dateFormatterDay stringFromDate:selectedDay] intValue];
-//    NSLog(@"BirthDay is %d",BirthDay);
-    
-    NSDate *selected = [dataPicker date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    birthdayDateString = [dateFormatter stringFromDate:selected];
-//    NSLog(@"birthdayDateString is %@",birthdayDateString);
- 
-    [tableView reloadData];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (isTabSelected == YES) {
+        
+        
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        [UIView beginAnimations:nil context:context];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationDuration:0.1];//动画时间长度，单位秒，浮点数
+        [self.view exchangeSubviewAtIndex:0 withSubviewAtIndex:1];
+        self.dataPicker.frame = CGRectMake(0, 245, 320, 260);
+        
+        [UIView setAnimationDelegate:self];
+        // 动画完毕后调用animationFinished
+//        [UIView setAnimationDidStopSelector:@selector(animationFinished)];
+        [UIView commitAnimations];
+        
+        [self ViewAnimation:self.dataPicker willHidden:NO];
+        
+        
+        
+        NSDate *selectedYear = [dataPicker date];
+        NSDateFormatter *dateFormatterYear = [[NSDateFormatter alloc] init];
+        [dateFormatterYear setDateFormat:@"yyyy"];
+        BirthYear = [[dateFormatterYear stringFromDate:selectedYear] intValue];
+        
+        NSDate *selectedMonth = [dataPicker date];
+        NSDateFormatter *dateFormatterMonth = [[NSDateFormatter alloc] init];
+        [dateFormatterMonth setDateFormat:@"MM"];
+        BirthMonth = [[dateFormatterMonth stringFromDate:selectedMonth] intValue];
+        
+        NSDate *selectedDay = [dataPicker date];
+        NSDateFormatter *dateFormatterDay = [[NSDateFormatter alloc] init];
+        [dateFormatterDay setDateFormat:@"dd"];
+        BirthDay = [[dateFormatterDay stringFromDate:selectedDay] intValue];
+        
+        NSDate *selected = [dataPicker date];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        birthdayDateString = [dateFormatter stringFromDate:selected];
+        
+        [tableView reloadData];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+        isTabSelected = NO;
+    } else {
+        
+        
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        [UIView beginAnimations:nil context:context];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationDuration:0.1];//动画时间长度，单位秒，浮点数
+        [self.view exchangeSubviewAtIndex:0 withSubviewAtIndex:1];
+        self.dataPicker.frame = CGRectMake(0, 245, 320, 260);
+        
+        [UIView setAnimationDelegate:self];
+        // 动画完毕后调用animationFinished
+//        [UIView setAnimationDidStopSelector:@selector(animationFinished)];
+        [UIView commitAnimations];
+        
+        [self ViewAnimation:self.dataPicker willHidden:YES];
+        
+        
+        
+        NSDate *selectedYear = [dataPicker date];
+        NSDateFormatter *dateFormatterYear = [[NSDateFormatter alloc] init];
+        [dateFormatterYear setDateFormat:@"yyyy"];
+        BirthYear = [[dateFormatterYear stringFromDate:selectedYear] intValue];
+        
+        NSDate *selectedMonth = [dataPicker date];
+        NSDateFormatter *dateFormatterMonth = [[NSDateFormatter alloc] init];
+        [dateFormatterMonth setDateFormat:@"MM"];
+        BirthMonth = [[dateFormatterMonth stringFromDate:selectedMonth] intValue];
+        
+        NSDate *selectedDay = [dataPicker date];
+        NSDateFormatter *dateFormatterDay = [[NSDateFormatter alloc] init];
+        [dateFormatterDay setDateFormat:@"dd"];
+        BirthDay = [[dateFormatterDay stringFromDate:selectedDay] intValue];
+        
+        NSDate *selected = [dataPicker date];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        birthdayDateString = [dateFormatter stringFromDate:selected];
+        
+        [tableView reloadData];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+        self.dataPicker.hidden = YES;
+        isTabSelected = YES;
+    }
 }
+
+//-(void)animationFinished{
+//    NSLog(@"动画结束!");
+//}
+
+- (void)ViewAnimation:(UIView*)view willHidden:(BOOL)hidden {
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        if (hidden) {
+            view.frame = CGRectMake(0, 480, 320, 260);
+        } else {
+            [view setHidden:hidden];
+            view.frame = CGRectMake(0, 245, 320, 260);
+        }
+    } completion:^(BOOL finished) {
+        [view setHidden:hidden];
+    }];
+}
+
+
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [userNameTextField resignFirstResponder];
+    self.dataPicker.hidden = YES;
+    isTabSelected = YES;
 }
 
 @end

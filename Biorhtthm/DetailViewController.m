@@ -63,14 +63,17 @@
     
     UILabel *pLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 280, 40, 40)];
     pLabel.text = @"体力:";
+    pLabel.textColor = [UIColor blueColor];
     [self.view addSubview:pLabel];
     
     UILabel *iLabel = [[UILabel alloc]initWithFrame:CGRectMake(200, 280, 40, 40)];
     iLabel.text = @"智力:";
+    iLabel.textColor = [UIColor redColor];
     [self.view addSubview:iLabel];
     
     UILabel *mLabel = [[UILabel alloc]initWithFrame:CGRectMake(390, 280, 40, 40)];
     mLabel.text = @"情绪:";
+    mLabel.textColor = [UIColor blackColor];
     [self.view addSubview:mLabel];
     
     
@@ -108,18 +111,21 @@
     pValueLabel = [[UILabel alloc]initWithFrame:CGRectMake(130, 280, 50, 40)];
     pValueLabel.textAlignment = NSTextAlignmentRight;
     pValueLabel.text = [NSString stringWithFormat:@"%d%%",pValue];
+//    pValueLabel.backgroundColor = [UIColor blueColor];
     todayPValue = pValueLabel.text;
     [self.view addSubview:pValueLabel];
     
     iValueLabel = [[UILabel alloc]initWithFrame:CGRectMake(320, 280, 50, 40)];
     iValueLabel.textAlignment = NSTextAlignmentRight;
     iValueLabel.text = [NSString stringWithFormat:@"%d%%",iValue];
+//    iValueLabel.backgroundColor = [UIColor redColor];
     todayIValue = iValueLabel.text;
     [self.view addSubview:iValueLabel];
     
     mValueLabel = [[UILabel alloc]initWithFrame:CGRectMake(500, 280, 50, 40)];
     mValueLabel.textAlignment = NSTextAlignmentRight;
     mValueLabel.text = [NSString stringWithFormat:@"%d%%",mValue];
+//    mValueLabel.backgroundColor = [UIColor blackColor];
     todayMValue = mValueLabel.text;
     [self.view addSubview:mValueLabel];
   
@@ -317,7 +323,7 @@
     CGContextStrokePath(ctx);
     
     
-    
+    // 体力p
     CGContextSetStrokeColorWithColor(ctx, [[UIColor blueColor]CGColor]);
     CGContextMoveToPoint(ctx, 10, 100);
     
@@ -327,7 +333,7 @@
         CGContextAddLineToPoint(ctx, 10+z, 100-40*y);
     }
     CGContextStrokePath(ctx);
-    
+    // 智力i
     CGContextSetStrokeColorWithColor(ctx, [[UIColor redColor]CGColor]);
     CGContextMoveToPoint(ctx, 10, 100);
     
@@ -337,7 +343,7 @@
         CGContextAddLineToPoint(ctx, 10+z, 100-40*y);
     }
     CGContextStrokePath(ctx);
-    
+    // 情绪m
     CGContextSetStrokeColorWithColor(ctx, [[UIColor blackColor]CGColor]);
     CGContextMoveToPoint(ctx, 10, 100);
     
